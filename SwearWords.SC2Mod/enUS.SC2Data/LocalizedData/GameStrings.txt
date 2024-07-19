@@ -1,0 +1,5 @@
+﻿DocInfo/DescLong=Completely devoid of any description whatsoever.
+DocInfo/DescShort=Any
+DocInfo/Name=Just Another StarCraft II Mod
+Param/Expression/lib_1F9A7589_69D0F2A5=~A~ ~B~
+Param/Value/lib_1F9A7589_2D8EBFFB=No UI Data found!

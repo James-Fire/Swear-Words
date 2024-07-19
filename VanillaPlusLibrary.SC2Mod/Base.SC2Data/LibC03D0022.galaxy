@@ -1,0 +1,343 @@
+include "TriggerLibs/NativeLib"
+
+include "LibC03D0022_h"
+
+//--------------------------------------------------------------------------------------------------
+// Library: VanillaPlusLibrary
+//--------------------------------------------------------------------------------------------------
+// External Library Initialization
+void libC03D0022_InitLibraries () {
+    libNtve_InitVariables();
+}
+
+// Variable Initialization
+bool libC03D0022_InitVariables_completed = false;
+
+void libC03D0022_InitVariables () {
+    if (libC03D0022_InitVariables_completed) {
+        return;
+    }
+
+    libC03D0022_InitVariables_completed = true;
+
+    libC03D0022_gv_objectiveUnitMustSurvive = c_invalidObjectiveId;
+}
+
+// Functions
+trigger auto_libC03D0022_gf_SpawnInfiniteUnitNydus_Trigger = null;
+string auto_libC03D0022_gf_SpawnInfiniteUnitNydus_lp_unitType;
+int auto_libC03D0022_gf_SpawnInfiniteUnitNydus_lp_unitCount;
+int auto_libC03D0022_gf_SpawnInfiniteUnitNydus_lp_spawnDelay;
+int auto_libC03D0022_gf_SpawnInfiniteUnitNydus_lp_spawnCount;
+point auto_libC03D0022_gf_SpawnInfiniteUnitNydus_lp_point;
+int auto_libC03D0022_gf_SpawnInfiniteUnitNydus_lp_owner;
+bool auto_libC03D0022_gf_SpawnInfiniteUnitNydus_lp_reveal;
+
+void libC03D0022_gf_SpawnInfiniteUnitNydus (string lp_unitType, int lp_unitCount, int lp_spawnDelay, int lp_spawnCount, point lp_point, int lp_owner, bool lp_reveal) {
+    auto_libC03D0022_gf_SpawnInfiniteUnitNydus_lp_unitType = lp_unitType;
+    auto_libC03D0022_gf_SpawnInfiniteUnitNydus_lp_unitCount = lp_unitCount;
+    auto_libC03D0022_gf_SpawnInfiniteUnitNydus_lp_spawnDelay = lp_spawnDelay;
+    auto_libC03D0022_gf_SpawnInfiniteUnitNydus_lp_spawnCount = lp_spawnCount;
+    auto_libC03D0022_gf_SpawnInfiniteUnitNydus_lp_point = lp_point;
+    auto_libC03D0022_gf_SpawnInfiniteUnitNydus_lp_owner = lp_owner;
+    auto_libC03D0022_gf_SpawnInfiniteUnitNydus_lp_reveal = lp_reveal;
+
+    if (auto_libC03D0022_gf_SpawnInfiniteUnitNydus_Trigger == null) {
+        auto_libC03D0022_gf_SpawnInfiniteUnitNydus_Trigger = TriggerCreate("auto_libC03D0022_gf_SpawnInfiniteUnitNydus_TriggerFunc");
+    }
+
+    TriggerExecute(auto_libC03D0022_gf_SpawnInfiniteUnitNydus_Trigger, false, false);
+}
+
+bool auto_libC03D0022_gf_SpawnInfiniteUnitNydus_TriggerFunc (bool testConds, bool runActions) {
+    string lp_unitType = auto_libC03D0022_gf_SpawnInfiniteUnitNydus_lp_unitType;
+    int lp_unitCount = auto_libC03D0022_gf_SpawnInfiniteUnitNydus_lp_unitCount;
+    int lp_spawnDelay = auto_libC03D0022_gf_SpawnInfiniteUnitNydus_lp_spawnDelay;
+    int lp_spawnCount = auto_libC03D0022_gf_SpawnInfiniteUnitNydus_lp_spawnCount;
+    point lp_point = auto_libC03D0022_gf_SpawnInfiniteUnitNydus_lp_point;
+    int lp_owner = auto_libC03D0022_gf_SpawnInfiniteUnitNydus_lp_owner;
+    bool lp_reveal = auto_libC03D0022_gf_SpawnInfiniteUnitNydus_lp_reveal;
+
+    // Variable Declarations
+    unit lv_nydusWorm;
+    int lv_packs;
+    int lv_packSize;
+    string lv_type;
+    fixed lv_cooldown;
+
+    // Automatic Variable Declarations
+    // Variable Initialization
+
+    // Implementation
+    if ((lp_spawnCount == 0)) {
+        lv_packs = -1;
+    }
+    else {
+        lv_packs = lp_spawnCount;
+    }
+    lv_type = lp_unitType;
+    lv_packSize = lp_unitCount;
+    lv_cooldown = lp_spawnDelay;
+    if ((RegionContainsPoint(RegionCircle(lp_point, 10.0), CameraGetTarget(1)) == true)) {
+        CameraShakeStart(1, c_cameraPositionTarget, c_cameraDirectionZ, 0.02, 2.0, 100.0, 3.0);
+    }
+
+    libNtve_gf_CreateUnitsAtPoint2(1, "NydusCanal", c_unitCreateIgnoreBirth, lp_owner, lp_point);
+    UnitSetPropertyFixed(UnitLastCreated(), c_unitPropLifePercent, 100.0);
+    lv_nydusWorm = UnitLastCreated();
+    libNtve_gf_PlayAnimation(libNtve_gf_MainActorofUnit(UnitLastCreated()), c_animNameDefault, "Birth 02", 0, c_animTimeDefault);
+    SoundPlay(SoundLink("NydusWorm_Birth", -1), PlayerGroupAll(), 100.0, 0.0);
+    if ((lp_reveal == true)) {
+        VisRevealArea(1, RegionCircle(lp_point, 4.0), 5.0, false);
+    }
+
+    Wait(3.7, c_timeGame);
+    while (true) {
+        if ((lv_packs == 0)) {
+            UnitRemove(lv_nydusWorm);
+            return true;
+        }
+
+        if ((UnitIsAlive(lv_nydusWorm) == true)) {
+            libNtve_gf_PlayAnimation(libNtve_gf_MainActorofUnit(lv_nydusWorm), c_animNameDefault, "Spell", 0, c_animTimeDefault);
+            libNtve_gf_CreateUnitsAtPoint2(lv_packSize, lv_type, 0, lp_owner, UnitGetPosition(lv_nydusWorm));
+            AISetGroupSuicide(UnitLastCreatedGroup(), true);
+        }
+
+        Wait(lv_cooldown, c_timeGame);
+    }
+    return true;
+}
+
+trigger auto_libC03D0022_gf_SpawnUnitsbyDroppod_Trigger = null;
+int auto_libC03D0022_gf_SpawnUnitsbyDroppod_lp_unitCount;
+string auto_libC03D0022_gf_SpawnUnitsbyDroppod_lp_unitType;
+point auto_libC03D0022_gf_SpawnUnitsbyDroppod_lp_point;
+
+void libC03D0022_gf_SpawnUnitsbyDroppod (int lp_unitCount, string lp_unitType, point lp_point) {
+    auto_libC03D0022_gf_SpawnUnitsbyDroppod_lp_unitCount = lp_unitCount;
+    auto_libC03D0022_gf_SpawnUnitsbyDroppod_lp_unitType = lp_unitType;
+    auto_libC03D0022_gf_SpawnUnitsbyDroppod_lp_point = lp_point;
+
+    if (auto_libC03D0022_gf_SpawnUnitsbyDroppod_Trigger == null) {
+        auto_libC03D0022_gf_SpawnUnitsbyDroppod_Trigger = TriggerCreate("auto_libC03D0022_gf_SpawnUnitsbyDroppod_TriggerFunc");
+    }
+
+    TriggerExecute(auto_libC03D0022_gf_SpawnUnitsbyDroppod_Trigger, false, false);
+}
+
+bool auto_libC03D0022_gf_SpawnUnitsbyDroppod_TriggerFunc (bool testConds, bool runActions) {
+    int lp_unitCount = auto_libC03D0022_gf_SpawnUnitsbyDroppod_lp_unitCount;
+    string lp_unitType = auto_libC03D0022_gf_SpawnUnitsbyDroppod_lp_unitType;
+    point lp_point = auto_libC03D0022_gf_SpawnUnitsbyDroppod_lp_point;
+
+    // Automatic Variable Declarations
+    return true;
+}
+
+void libC03D0022_gf_UnitUnitGroupMinimapPing (text lp_pingTooltip, unit lp_unit, unitgroup lp_unitGroup) {
+    // Variable Declarations
+    unit lv_unit;
+    unitgroup lv_unitGroup;
+    int lv_createdPing;
+
+    // Automatic Variable Declarations
+    // Variable Initialization
+    lv_unitGroup = UnitGroupEmpty();
+    lv_createdPing = c_invalidPingId;
+
+    // Implementation
+    if ((lp_unit != null)) {
+        lv_unit = lp_unit;
+        libNtve_gf_CreatePingFacingAngle(PlayerGroupAll(), "PingAlert", UnitGetPosition(lv_unit), ColorWithAlpha(100.00, 0.00, 0.00, 0.00), 0.0, 270.0);
+        PingSetScale(PingLastCreated(), 0.6);
+        PingSetTooltip(PingLastCreated(), lp_pingTooltip);
+        PingSetUnit(PingLastCreated(), lv_unit);
+        lv_createdPing = PingLastCreated();
+    }
+
+    if ((lp_unitGroup != null)) {
+        lv_unitGroup = lp_unitGroup;
+        libNtve_gf_CreatePingFacingAngle(PlayerGroupAll(), "PingAlert", UnitGroupCenterOfGroup(lv_unitGroup), ColorWithAlpha(100.00, 0.00, 0.00, 0.00), 0.0, 270.0);
+        PingSetScale(PingLastCreated(), 0.6);
+        PingSetTooltip(PingLastCreated(), lp_pingTooltip);
+        lv_createdPing = PingLastCreated();
+        while (true) {
+            if ((libNtve_gf_UnitGroupIsDead(lv_unitGroup) == true)) {
+                PingDestroy(lv_createdPing);
+                break;
+            }
+            else {
+                PingSetPosition(lv_createdPing, UnitGroupCenterOfGroup(lv_unitGroup));
+                PingSetVisible(lv_createdPing, true);
+            }
+            Wait(0.1, c_timeReal);
+        }
+    }
+
+}
+
+bool libC03D0022_gf_BooleanTernaryOperator (bool lp_a, bool lp_b, bool lp_c) {
+    // Automatic Variable Declarations
+    // Implementation
+    if ((lp_a == true)) {
+        return lp_b;
+    }
+    else {
+        return lp_c;
+    }
+}
+
+int libC03D0022_gf_IntegerTernaryOperator (bool lp_a, int lp_b, int lp_c) {
+    // Automatic Variable Declarations
+    // Implementation
+    if ((lp_a == true)) {
+        return lp_b;
+    }
+    else {
+        return lp_c;
+    }
+}
+
+fixed libC03D0022_gf_RealTernaryOperator (bool lp_a, fixed lp_b, fixed lp_c) {
+    // Automatic Variable Declarations
+    // Implementation
+    if ((lp_a == true)) {
+        return lp_b;
+    }
+    else {
+        return lp_c;
+    }
+}
+
+void libC03D0022_gf_CreateBulliesinCircle (int lp_rebuildCount, string lp_unitType, point lp_point, int lp_owner, int lp_radius, int lp_count) {
+    // Automatic Variable Declarations
+    int auto9D262D7E_n;
+    int auto9D262D7E_i;
+
+    // Implementation
+    auto9D262D7E_n = lp_count;
+    for (auto9D262D7E_i = 1; auto9D262D7E_i <= auto9D262D7E_n; auto9D262D7E_i += 1) {
+        AIAddBully(lp_owner, lp_unitType, RegionRandomPoint(RegionCircle(lp_point, 1.0)), lp_rebuildCount);
+    }
+}
+
+void libC03D0022_gf_ChatUpgradeText (string lp_upgrade, string lp_upgradeName, string lp_upgradeEffect) {
+    // Automatic Variable Declarations
+    // Implementation
+    TechTreeUpgradeAddLevel(1, lp_upgrade, 1);
+    UIDisplayMessage(PlayerGroupAll(), c_messageAreaSubtitle, (StringExternal("Param/Value/lib_C03D0022_EA79A880") + StringToText(lp_upgradeName) + StringToText(lp_upgradeEffect)));
+    SoundPlayForPlayer(SoundLink("TUINewRoomActorOnline", 0), c_maxPlayers, PlayerGroupAll(), 100.0, 0.0);
+}
+
+// Triggers
+//--------------------------------------------------------------------------------------------------
+// Trigger: Tutorial Indicator On Unit
+//--------------------------------------------------------------------------------------------------
+bool libC03D0022_gt_TutorialIndicatorOnUnit_Func (bool testConds, bool runActions) {
+    // Automatic Variable Declarations
+    return true;
+}
+
+//--------------------------------------------------------------------------------------------------
+void libC03D0022_gt_TutorialIndicatorOnUnit_Init () {
+    libC03D0022_gt_TutorialIndicatorOnUnit = TriggerCreate("libC03D0022_gt_TutorialIndicatorOnUnit_Func");
+}
+
+//--------------------------------------------------------------------------------------------------
+// Trigger: Unit Must Survive Objective
+//--------------------------------------------------------------------------------------------------
+bool libC03D0022_gt_UnitMustSurviveObjective_Func (bool testConds, bool runActions) {
+    // Automatic Variable Declarations
+    return true;
+}
+
+//--------------------------------------------------------------------------------------------------
+void libC03D0022_gt_UnitMustSurviveObjective_Init () {
+    libC03D0022_gt_UnitMustSurviveObjective = TriggerCreate("libC03D0022_gt_UnitMustSurviveObjective_Func");
+}
+
+//--------------------------------------------------------------------------------------------------
+// Trigger: Objective Unit Must Survive Create Q
+//--------------------------------------------------------------------------------------------------
+bool libC03D0022_gt_ObjectiveUnitMustSurviveCreateQ_Func (bool testConds, bool runActions) {
+    // Automatic Variable Declarations
+    // Conditions
+    if (testConds) {
+        if (!((TriggerIsEnabled(TriggerGetCurrent()) == true))) {
+            return false;
+        }
+    }
+
+    // Actions
+    if (!runActions) {
+        return true;
+    }
+
+    TriggerEnable(TriggerGetCurrent(), false);
+    TriggerQueueEnter();
+    ObjectiveCreate(StringExternal("Param/Value/lib_C03D0022_4A60A1D5"), StringExternal("Param/Value/lib_C03D0022_8A6E7D00"), c_objectiveStateActive, true);
+    libC03D0022_gv_objectiveUnitMustSurvive = ObjectiveLastCreated();
+    Wait(5.0, c_timeGame);
+    TriggerQueueExit();
+    return true;
+}
+
+//--------------------------------------------------------------------------------------------------
+void libC03D0022_gt_ObjectiveUnitMustSurviveCreateQ_Init () {
+    libC03D0022_gt_ObjectiveUnitMustSurviveCreateQ = TriggerCreate("libC03D0022_gt_ObjectiveUnitMustSurviveCreateQ_Func");
+}
+
+//--------------------------------------------------------------------------------------------------
+// Trigger: Objective Unit Survive Complete
+//--------------------------------------------------------------------------------------------------
+bool libC03D0022_gt_ObjectiveUnitSurviveComplete_Func (bool testConds, bool runActions) {
+    // Automatic Variable Declarations
+    // Conditions
+    if (testConds) {
+        if (!((TriggerIsEnabled(TriggerGetCurrent()) == true))) {
+            return false;
+        }
+    }
+
+    // Actions
+    if (!runActions) {
+        return true;
+    }
+
+    TriggerEnable(TriggerGetCurrent(), false);
+    TriggerExecute(libC03D0022_gt_ObjectiveUnitMustSurviveCreateQ, true, false);
+    ObjectiveSetState(libC03D0022_gv_objectiveUnitMustSurvive, c_objectiveStateCompleted);
+    Wait(5.0, c_timeGame);
+    return true;
+}
+
+//--------------------------------------------------------------------------------------------------
+void libC03D0022_gt_ObjectiveUnitSurviveComplete_Init () {
+    libC03D0022_gt_ObjectiveUnitSurviveComplete = TriggerCreate("libC03D0022_gt_ObjectiveUnitSurviveComplete_Func");
+}
+
+void libC03D0022_InitTriggers () {
+    libC03D0022_gt_TutorialIndicatorOnUnit_Init();
+    libC03D0022_gt_UnitMustSurviveObjective_Init();
+    libC03D0022_gt_ObjectiveUnitMustSurviveCreateQ_Init();
+    libC03D0022_gt_ObjectiveUnitSurviveComplete_Init();
+}
+
+//--------------------------------------------------------------------------------------------------
+// Library Initialization
+//--------------------------------------------------------------------------------------------------
+bool libC03D0022_InitLib_completed = false;
+
+void libC03D0022_InitLib () {
+    if (libC03D0022_InitLib_completed) {
+        return;
+    }
+
+    libC03D0022_InitLib_completed = true;
+
+    libC03D0022_InitLibraries();
+    libC03D0022_InitVariables();
+    libC03D0022_InitTriggers();
+}
+

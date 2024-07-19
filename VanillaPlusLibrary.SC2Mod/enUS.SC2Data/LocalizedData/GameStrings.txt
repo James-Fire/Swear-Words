@@ -1,0 +1,7 @@
+﻿DocInfo/DescLong=Completely devoid of any description whatsoever.
+DocInfo/DescShort=Any
+DocInfo/Name=Just Another StarCraft II Mod
+Param/Value/lib_C03D0022_466A4974=Aberration
+Param/Value/lib_C03D0022_4A60A1D5=Raynor Must Survive
+Param/Value/lib_C03D0022_8A6E7D00=Raynor must not die; it's bad for his reputation.
+Param/Value/lib_C03D0022_EA79A880=<c val="FF00FF">Upgrade Granted: </c>

@@ -1,0 +1,715 @@
+<?xml version="1.0" encoding="utf-8"?>
+<Catalog>
+    <CUser id="EventTypeData">
+        <Fields Id="Type Name" Type="String" EditorColumn="1"/>
+        <Fields Id="Border Icon" Type="Image" EditorColumn="2"/>
+        <Fields Id="Prepend Username" Type="Int" EditorColumn="4"/>
+        <Fields Id="Can Be Timed" Type="Int" EditorColumn="3"/>
+        <Instances Id="[Default]"/>
+        <Instances Id="Individual">
+            <Image Image="Assets\Textures\ui_multiplayerload_avatarborder_bronze.dds">
+                <Field Id="Border Icon"/>
+            </Image>
+            <Int Int="1">
+                <Field Id="Can Be Timed"/>
+            </Int>
+            <Int Int="1">
+                <Field Id="Prepend Username"/>
+            </Int>
+            <String String="Individually Funded Event">
+                <Field Id="Type Name"/>
+            </String>
+        </Instances>
+        <Instances Id="Group">
+            <Image Image="Assets\Textures\ui_multiplayerload_avatarborder_silver.dds">
+                <Field Id="Border Icon"/>
+            </Image>
+            <Int Int="1">
+                <Field Id="Can Be Timed"/>
+            </Int>
+            <String String="Group Funded Event">
+                <Field Id="Type Name"/>
+            </String>
+        </Instances>
+        <Instances Id="BidWar">
+            <Image Image="Assets\Textures\ui_multiplayerload_avatarborder_platinum.dds">
+                <Field Id="Border Icon"/>
+            </Image>
+            <String String="Bid War Outcome">
+                <Field Id="Type Name"/>
+            </String>
+        </Instances>
+        <Instances Id="MissionEvent">
+            <Image Image="Assets\Textures\ui_multiplayerload_avatarborder_gold.dds">
+                <Field Id="Border Icon"/>
+            </Image>
+            <String String="Mission Specific Event">
+                <Field Id="Type Name"/>
+            </String>
+        </Instances>
+        <Instances Id="MissionGoal">
+            <Image Image="Assets\Textures\ui_multiplayerload_avatarborder_diamond.dds">
+                <Field Id="Border Icon"/>
+            </Image>
+            <String String="Mission Specific Goal">
+                <Field Id="Type Name"/>
+            </String>
+        </Instances>
+        <Instances Id="PlanetGoal">
+            <Image Image="Assets\Textures\ui_multiplayerload_avatarborder_master.dds">
+                <Field Id="Border Icon"/>
+            </Image>
+            <String String="Planet Specific Goal">
+                <Field Id="Type Name"/>
+            </String>
+        </Instances>
+        <Instances Id="CampaignGoal">
+            <Image Image="Assets\Textures\ui_multiplayerload_avatarborder_grandmaster.dds">
+                <Field Id="Border Icon"/>
+            </Image>
+            <String String="Heart of the Swarm Campaign Goal">
+                <Field Id="Type Name"/>
+            </String>
+        </Instances>
+    </CUser>
+    <CUser id="EventsUIData">
+        <Fields>
+            <Id value="Name"/>
+            <Type value="String"/>
+            <EditorColumn value="1"/>
+            <EditorText value="Name"/>
+            <Flags index="Modifiable" value="1"/>
+        </Fields>
+        <Fields Id="Joke" Type="Text">
+            <Flags index="Modifiable" value="1"/>
+        </Fields>
+        <Fields Id="Icon" Type="Image" EditorColumn="2">
+            <Flags index="Modifiable" value="1"/>
+        </Fields>
+        <Fields>
+            <Id value="Timer Data"/>
+            <Type value="User"/>
+            <UserType value="TimedEventsData"/>
+            <EditorColumn value="5"/>
+        </Fields>
+        <Fields>
+            <Id value="EventType"/>
+            <Type value="User"/>
+            <UserType value="EventTypeData"/>
+            <EditorColumn value="3"/>
+        </Fields>
+        <Fields Id="Arrival Sound" Type="Sound" EditorColumn="6">
+            <Flags index="Modifiable" value="1"/>
+        </Fields>
+        <Instances Id="[Default]">
+            <Image Image="Assets\Textures\ui_hots_icon_shared_questionmark.dds">
+                <Field Id="Icon"/>
+            </Image>
+            <User Type="TimedEventsData" Instance="[Default]">
+                <Field Id="Timer Data"/>
+            </User>
+            <User Type="EventTypeData" Instance="Group">
+                <Field Id="EventType"/>
+            </User>
+        </Instances>
+        <Instances Id="browder">
+            <Image Image="Assets\Textures\btn-tips-rocks.dds">
+                <Field Id="Icon"/>
+            </Image>
+            <String String="Browder">
+                <Field Id="Name"/>
+            </String>
+            <Text Text="UserData/EventsUIData/browder_Joke">
+                <Field Id="Joke"/>
+            </Text>
+        </Instances>
+        <Instances Id="battlecruiserOperational">
+            <Image Image="Assets\Textures\btn-unit-terran-battlecruiserloki.dds">
+                <Field Id="Icon"/>
+            </Image>
+            <String String="Battlecruiser Operational">
+                <Field Id="Name"/>
+            </String>
+            <Text Text="UserData/EventsUIData/battlecruiserOperational_Joke">
+                <Field Id="Joke"/>
+            </Text>
+        </Instances>
+        <Instances Id="purification">
+            <Image Image="Assets\Textures\btn-ability-spearofadun-solarbombardment.dds">
+                <Field Id="Icon"/>
+            </Image>
+            <String String="Purification">
+                <Field Id="Name"/>
+            </String>
+            <Text Text="UserData/EventsUIData/purification_Joke">
+                <Field Id="Joke"/>
+            </Text>
+        </Instances>
+        <Instances Id="pureSolarite">
+            <Image Image="Assets\Textures\btn-solar-solarite.dds">
+                <Field Id="Icon"/>
+            </Image>
+            <String String="Pure Solarite">
+                <Field Id="Name"/>
+            </String>
+            <Text Text="UserData/EventsUIData/pureSolarite_Joke">
+                <Field Id="Joke"/>
+            </Text>
+        </Instances>
+        <Instances Id="infiniteCycle">
+            <Image Image="Assets\Textures\tip_hybridbehemoth.dds">
+                <Field Id="Icon"/>
+            </Image>
+            <String String="Infinite Cycle">
+                <Field Id="Name"/>
+            </String>
+            <Text Text="UserData/EventsUIData/infiniteCycle_Joke">
+                <Field Id="Joke"/>
+            </Text>
+        </Instances>
+        <Instances Id="bigGirl">
+            <Image Image="Assets\Textures\btn-hero-kerriganqueenofblades.dds">
+                <Field Id="Icon"/>
+            </Image>
+            <String String="Big Girl">
+                <Field Id="Name"/>
+            </String>
+            <Text Text="UserData/EventsUIData/bigGirl_Joke">
+                <Field Id="Joke"/>
+            </Text>
+        </Instances>
+        <Instances Id="nerfBat">
+            <Image Image="Assets\Textures\btn-hero-kerriganghost.dds">
+                <Field Id="Icon"/>
+            </Image>
+            <String String="Nerf Bat">
+                <Field Id="Name"/>
+            </String>
+            <Text Text="UserData/EventsUIData/nerfBat_Joke">
+                <Field Id="Joke"/>
+            </Text>
+        </Instances>
+        <Instances Id="raptor">
+            <Image Image="Assets\Textures\btn-unit-zerg-zergling-raptor.dds">
+                <Field Id="Icon"/>
+            </Image>
+            <String String="Evolution Shift - Raptors">
+                <Field Id="Name"/>
+            </String>
+            <Text Text="UserData/EventsUIData/raptor_Joke">
+                <Field Id="Joke"/>
+            </Text>
+        </Instances>
+        <Instances Id="swarmling">
+            <Image Image="Assets\Textures\btn-unit-zerg-zergling-swarmling.dds">
+                <Field Id="Icon"/>
+            </Image>
+            <String String="Evolution Shift - Swarmlings">
+                <Field Id="Name"/>
+            </String>
+            <Text Text="UserData/EventsUIData/swarmling_Joke">
+                <Field Id="Joke"/>
+            </Text>
+        </Instances>
+        <Instances Id="vile">
+            <Image Image="Assets\Textures\btn-unit-zerg-roach-vile.dds">
+                <Field Id="Icon"/>
+            </Image>
+            <String String="Evolution Shift - Vile Roaches">
+                <Field Id="Name"/>
+            </String>
+            <Text Text="UserData/EventsUIData/vile_Joke">
+                <Field Id="Joke"/>
+            </Text>
+        </Instances>
+        <Instances Id="corpser">
+            <Image Image="Assets\Textures\btn-unit-zerg-roach-corpser.dds">
+                <Field Id="Icon"/>
+            </Image>
+            <String String="Evolution Shift - Corpser Roaches">
+                <Field Id="Name"/>
+            </String>
+            <Text Text="UserData/EventsUIData/corpser_Joke">
+                <Field Id="Joke"/>
+            </Text>
+        </Instances>
+        <Instances Id="hunter">
+            <Image Image="Assets\Textures\btn-unit-zerg-baneling-hunter.dds">
+                <Field Id="Icon"/>
+            </Image>
+            <String String="Evolution Shift - Hunter Banes">
+                <Field Id="Name"/>
+            </String>
+            <Text Text="UserData/EventsUIData/hunter_Joke">
+                <Field Id="Joke"/>
+            </Text>
+        </Instances>
+        <Instances Id="splitter">
+            <Image Image="Assets\Textures\btn-unit-zerg-splitterling.dds">
+                <Field Id="Icon"/>
+            </Image>
+            <String String="Evolution Shift - Splitter Banes">
+                <Field Id="Name"/>
+            </String>
+            <Text Text="UserData/EventsUIData/splitter_Joke">
+                <Field Id="Joke"/>
+            </Text>
+        </Instances>
+        <Instances Id="lurker">
+            <Image Image="Assets\Textures\btn-unit-zerg-lurker.dds">
+                <Field Id="Icon"/>
+            </Image>
+            <String String="Evolution Shift - Lurkers">
+                <Field Id="Name"/>
+            </String>
+            <Text Text="UserData/EventsUIData/lurker_Joke">
+                <Field Id="Joke"/>
+            </Text>
+        </Instances>
+        <Instances Id="impaler">
+            <Image Image="Assets\Textures\btn-unit-zerg-impaler.dds">
+                <Field Id="Icon"/>
+            </Image>
+            <String String="Evolution Shift - Impalers">
+                <Field Id="Name"/>
+            </String>
+            <Text Text="UserData/EventsUIData/impaler_Joke">
+                <Field Id="Joke"/>
+            </Text>
+        </Instances>
+        <Instances Id="creeper">
+            <Image Image="Assets\Textures\btn-unit-zerg-swarmhost-creeper.dds">
+                <Field Id="Icon"/>
+            </Image>
+            <String String="Evolution Shift - Creeper Hosts">
+                <Field Id="Name"/>
+            </String>
+            <Text Text="UserData/EventsUIData/creeper_Joke">
+                <Field Id="Joke"/>
+            </Text>
+        </Instances>
+        <Instances Id="carrion">
+            <Image Image="Assets\Textures\btn-unit-zerg-swarmhost-carrion.dds">
+                <Field Id="Icon"/>
+            </Image>
+            <String String="Evolution Shift - Carrion Hosts">
+                <Field Id="Name"/>
+            </String>
+            <Text Text="UserData/EventsUIData/carrion_Joke">
+                <Field Id="Joke"/>
+            </Text>
+        </Instances>
+        <Instances Id="viper">
+            <Image Image="Assets\Textures\btn-unit-zerg-viper.dds">
+                <Field Id="Icon"/>
+            </Image>
+            <String String="Evolution Shift - Viper">
+                <Field Id="Name"/>
+            </String>
+            <Text Text="UserData/EventsUIData/viper_Joke">
+                <Field Id="Joke"/>
+            </Text>
+        </Instances>
+        <Instances Id="broodlord">
+            <Image Image="Assets\Textures\btn-unit-zerg-broodlord.dds">
+                <Field Id="Icon"/>
+            </Image>
+            <String String="Evolution Shift - Brood Lords">
+                <Field Id="Name"/>
+            </String>
+            <Text Text="UserData/EventsUIData/broodlord_Joke">
+                <Field Id="Joke"/>
+            </Text>
+        </Instances>
+        <Instances Id="torrasque">
+            <Image Image="Assets\Textures\btn-unit-zerg-ultralisk-torrasque.dds">
+                <Field Id="Icon"/>
+            </Image>
+            <String String="Evolution Shift - Torrasque">
+                <Field Id="Name"/>
+            </String>
+            <Text Text="UserData/EventsUIData/torrasque_Joke">
+                <Field Id="Joke"/>
+            </Text>
+        </Instances>
+        <Instances Id="noxious">
+            <Image Image="Assets\Textures\btn-unit-zerg-ultralisk-noxious.dds">
+                <Field Id="Icon"/>
+            </Image>
+            <String String="Evolution Shift - Stinkylisk">
+                <Field Id="Name"/>
+            </String>
+            <Text Text="UserData/EventsUIData/noxious_Joke">
+                <Field Id="Joke"/>
+            </Text>
+        </Instances>
+        <Instances Id="overcharge">
+            <Image Image="Assets\Textures\btn-upgrade-protoss-structureovercharge.dds">
+                <Field Id="Icon"/>
+            </Image>
+            <String String="Overcharge">
+                <Field Id="Name"/>
+            </String>
+            <Text Text="UserData/EventsUIData/overcharge_Joke">
+                <Field Id="Joke"/>
+            </Text>
+            <User Type="TimedEventsData" Instance="overcharge">
+                <Field Id="Timer Data"/>
+            </User>
+        </Instances>
+        <Instances Id="myBroodlings">
+            <Image Image="Assets\Textures\abilityicon_spawnbroodlings_square.dds">
+                <Field Id="Icon"/>
+            </Image>
+            <String String="My Broodlings">
+                <Field Id="Name"/>
+            </String>
+            <Text Text="UserData/EventsUIData/myBroodlings_Joke">
+                <Field Id="Joke"/>
+            </Text>
+            <User Type="TimedEventsData" Instance="myBrood">
+                <Field Id="Timer Data"/>
+            </User>
+        </Instances>
+        <Instances Id="hercHerc">
+            <Image Image="Assets\Textures\btn-unit-terran-tychusherc-holo.dds">
+                <Field Id="Icon"/>
+            </Image>
+            <String String="Herc Herc">
+                <Field Id="Name"/>
+            </String>
+            <Text Text="UserData/EventsUIData/hercHerc_Joke">
+                <Field Id="Joke"/>
+            </Text>
+            <User Type="TimedEventsData" Instance="[Default]">
+                <Field Id="Timer Data"/>
+            </User>
+        </Instances>
+        <Instances Id="rakshir">
+            <Image Image="Assets\Textures\tip_rakshir.dds">
+                <Field Id="Icon"/>
+            </Image>
+            <String String="Rak&apos;Shir">
+                <Field Id="Name"/>
+            </String>
+            <Text Text="UserData/EventsUIData/rakshir_Joke">
+                <Field Id="Joke"/>
+            </Text>
+        </Instances>
+        <Instances Id="jailTime">
+            <Image Image="Assets\Textures\sc2_ui_glues_icons_lockedwarning.dds">
+                <Field Id="Icon"/>
+            </Image>
+            <String String="Jail Time">
+                <Field Id="Name"/>
+            </String>
+            <Text Text="UserData/EventsUIData/jailTime_Joke">
+                <Field Id="Joke"/>
+            </Text>
+        </Instances>
+        <Instances Id="xMarksTheSpot">
+            <Image Image="Assets\Textures\btn-tips-counter.dds">
+                <Field Id="Icon"/>
+            </Image>
+            <String String="X Marks The Spot">
+                <Field Id="Name"/>
+            </String>
+            <Text Text="UserData/EventsUIData/xMarksTheSpot_Joke">
+                <Field Id="Joke"/>
+            </Text>
+        </Instances>
+        <Instances Id="heroicfortification">
+            <Image Image="Assets\Textures\btn-ability-kerrigan-heroicfortitude.dds">
+                <Field Id="Icon"/>
+            </Image>
+            <String String="Heroic Fortification">
+                <Field Id="Name"/>
+            </String>
+            <Text Text="UserData/EventsUIData/heroicfortification_Joke">
+                <Field Id="Joke"/>
+            </Text>
+        </Instances>
+        <Instances Id="crystals">
+            <Image Image="Assets\Textures\btn-doodad-minerals.dds">
+                <Field Id="Icon"/>
+            </Image>
+            <String String="Crystals">
+                <Field Id="Name"/>
+            </String>
+            <Text Text="UserData/EventsUIData/crystals_Joke">
+                <Field Id="Joke"/>
+            </Text>
+            <User Type="EventTypeData" Instance="Individual">
+                <Field Id="EventType"/>
+            </User>
+        </Instances>
+        <Instances Id="gassy">
+            <Image Image="Assets\Textures\btn-ability-kerrigan-vespeneefficiency.dds">
+                <Field Id="Icon"/>
+            </Image>
+            <String String="Gassy">
+                <Field Id="Name"/>
+            </String>
+            <Text Text="UserData/EventsUIData/gassy_Joke">
+                <Field Id="Joke"/>
+            </Text>
+            <User Type="EventTypeData" Instance="Individual">
+                <Field Id="EventType"/>
+            </User>
+        </Instances>
+        <Instances Id="maphack">
+            <Image Image="Assets\Textures\btn-tips-starmap.dds">
+                <Field Id="Icon"/>
+            </Image>
+            <String String="Maphack">
+                <Field Id="Name"/>
+            </String>
+            <Text Text="UserData/EventsUIData/maphack_Joke">
+                <Field Id="Joke"/>
+            </Text>
+            <User Type="TimedEventsData" Instance="maphack">
+                <Field Id="Timer Data"/>
+            </User>
+            <User Type="EventTypeData" Instance="Individual">
+                <Field Id="EventType"/>
+            </User>
+        </Instances>
+        <Instances Id="tumorTime">
+            <Image Image="Assets\Textures\btn-ability-kerrigan-malignantcreep.dds">
+                <Field Id="Icon"/>
+            </Image>
+            <String String="Tumor Time">
+                <Field Id="Name"/>
+            </String>
+            <Text Text="UserData/EventsUIData/tumorTime_Joke">
+                <Field Id="Joke"/>
+            </Text>
+            <User Type="EventTypeData" Instance="Individual">
+                <Field Id="EventType"/>
+            </User>
+        </Instances>
+        <Instances Id="weMooUnseen">
+            <Image Image="Assets\Textures\wireframe-critter-cow.dds">
+                <Field Id="Icon"/>
+            </Image>
+            <String String="We Moo Unseen">
+                <Field Id="Name"/>
+            </String>
+            <Text Text="UserData/EventsUIData/weMooUnseen_Joke">
+                <Field Id="Joke"/>
+            </Text>
+            <User Type="EventTypeData" Instance="Individual">
+                <Field Id="EventType"/>
+            </User>
+        </Instances>
+        <Instances Id="jukebox">
+            <Image Image="Assets\Textures\btn-tips-cantina.dds">
+                <Field Id="Icon"/>
+            </Image>
+            <String String="Jukebox">
+                <Field Id="Name"/>
+            </String>
+            <Text Text="UserData/EventsUIData/jukebox_Joke">
+                <Field Id="Joke"/>
+            </Text>
+            <User Type="EventTypeData" Instance="Individual">
+                <Field Id="EventType"/>
+            </User>
+            <User Type="TimedEventsData" Instance="jukebox">
+                <Field Id="Timer Data"/>
+            </User>
+        </Instances>
+        <Instances Id="sniper">
+            <Image Image="Assets\Textures\longrange_coop.dds">
+                <Field Id="Icon"/>
+            </Image>
+            <String String="Sniper">
+                <Field Id="Name"/>
+            </String>
+            <Text Text="UserData/EventsUIData/sniper_Joke">
+                <Field Id="Joke"/>
+            </Text>
+            <User Type="TimedEventsData" Instance="sniper">
+                <Field Id="Timer Data"/>
+            </User>
+            <User Type="EventTypeData" Instance="Individual">
+                <Field Id="EventType"/>
+            </User>
+        </Instances>
+        <Instances Id="punchOut">
+            <Image Image="Assets\Textures\shortsighted_coop.dds">
+                <Field Id="Icon"/>
+            </Image>
+            <String String="Punch Out">
+                <Field Id="Name"/>
+            </String>
+            <Text Text="UserData/EventsUIData/punchOut_Joke">
+                <Field Id="Joke"/>
+            </Text>
+            <User Type="TimedEventsData" Instance="punchOut">
+                <Field Id="Timer Data"/>
+            </User>
+            <User Type="EventTypeData" Instance="Individual">
+                <Field Id="EventType"/>
+            </User>
+        </Instances>
+        <Instances Id="thegoodstuff">
+            <Image Image="Assets\Textures\btn-ability-terran-stimpack-color.dds">
+                <Field Id="Icon"/>
+            </Image>
+            <String String="The Good Stuff">
+                <Field Id="Name"/>
+            </String>
+            <Text Text="UserData/EventsUIData/thegoodstuff_Joke">
+                <Field Id="Joke"/>
+            </Text>
+            <User Type="TimedEventsData" Instance="thegoodstuff">
+                <Field Id="Timer Data"/>
+            </User>
+            <User Type="EventTypeData" Instance="Individual">
+                <Field Id="EventType"/>
+            </User>
+        </Instances>
+        <Instances Id="fastandfurious">
+            <Image Image="Assets\Textures\btn-ability-mengsk-marauder-royalstimpack.dds">
+                <Field Id="Icon"/>
+            </Image>
+            <String String="Fast and Furious">
+                <Field Id="Name"/>
+            </String>
+            <Text Text="UserData/EventsUIData/fastandfurious_Joke">
+                <Field Id="Joke"/>
+            </Text>
+            <User Type="TimedEventsData" Instance="fastandfurious">
+                <Field Id="Timer Data"/>
+            </User>
+            <User Type="EventTypeData" Instance="Individual">
+                <Field Id="EventType"/>
+            </User>
+        </Instances>
+        <Instances Id="emergencyshields">
+            <Image Image="Assets\Textures\barrier_coop.dds">
+                <Field Id="Icon"/>
+            </Image>
+            <String String="Emergency Shields">
+                <Field Id="Name"/>
+            </String>
+            <Text Text="UserData/EventsUIData/emergencyshields_Joke">
+                <Field Id="Joke"/>
+            </Text>
+            <User Type="EventTypeData" Instance="Individual">
+                <Field Id="EventType"/>
+            </User>
+        </Instances>
+        <Instances Id="bulwark">
+            <Image Image="Assets\Textures\btn-ability-mengsk-thor-bigboycover.dds">
+                <Field Id="Icon"/>
+            </Image>
+            <String String="Bulwark">
+                <Field Id="Name"/>
+            </String>
+            <Text Text="UserData/EventsUIData/bulwark_Joke">
+                <Field Id="Joke"/>
+            </Text>
+            <User Type="TimedEventsData" Instance="bulwark">
+                <Field Id="Timer Data"/>
+            </User>
+            <User Type="EventTypeData" Instance="Individual">
+                <Field Id="EventType"/>
+            </User>
+        </Instances>
+        <Instances Id="bigbusiness">
+            <Image Image="Assets\Textures\microtransactions_coop.dds">
+                <Field Id="Icon"/>
+            </Image>
+            <String String="Big Business">
+                <Field Id="Name"/>
+            </String>
+            <Text Text="UserData/EventsUIData/bigbusiness_Joke">
+                <Field Id="Joke"/>
+            </Text>
+            <User Type="TimedEventsData" Instance="bigbusiness">
+                <Field Id="Timer Data"/>
+            </User>
+            <User Type="EventTypeData" Instance="Individual">
+                <Field Id="EventType"/>
+            </User>
+        </Instances>
+        <Instances Id="onstrike">
+            <Image Image="Assets\Textures\naptime_coop.dds">
+                <Field Id="Icon"/>
+            </Image>
+            <String String="On Strike">
+                <Field Id="Name"/>
+            </String>
+            <Text Text="UserData/EventsUIData/onstrike_Joke">
+                <Field Id="Joke"/>
+            </Text>
+            <User Type="TimedEventsData" Instance="onstrike">
+                <Field Id="Timer Data"/>
+            </User>
+            <User Type="EventTypeData" Instance="Individual">
+                <Field Id="EventType"/>
+            </User>
+        </Instances>
+        <Instances Id="powerbuild">
+            <Image Image="Assets\Textures\btn-ability-spearofadun-chronosurge.dds">
+                <Field Id="Icon"/>
+            </Image>
+            <String String="Power Build">
+                <Field Id="Name"/>
+            </String>
+            <Text Text="UserData/EventsUIData/powerbuild_Joke">
+                <Field Id="Joke"/>
+            </Text>
+            <User Type="TimedEventsData" Instance="powerbuild">
+                <Field Id="Timer Data"/>
+            </User>
+            <User Type="EventTypeData" Instance="Individual">
+                <Field Id="EventType"/>
+            </User>
+        </Instances>
+        <Instances Id="slowdown">
+            <Image Image="Assets\Textures\timewarp_coop.dds">
+                <Field Id="Icon"/>
+            </Image>
+            <String String="Slow Down">
+                <Field Id="Name"/>
+            </String>
+            <Text Text="UserData/EventsUIData/slowdown_Joke">
+                <Field Id="Joke"/>
+            </Text>
+            <User Type="TimedEventsData" Instance="slowdown">
+                <Field Id="Timer Data"/>
+            </User>
+            <User Type="EventTypeData" Instance="Individual">
+                <Field Id="EventType"/>
+            </User>
+        </Instances>
+        <Instances Id="solariteKerrigan">
+            <Image Image="Assets\Textures\tip_kerriganascended.dds">
+                <Field Id="Icon"/>
+            </Image>
+            <String String="Basically the Queen Celestial of the Universe">
+                <Field Id="Name"/>
+            </String>
+            <User Type="TimedEventsData" Instance="[Default]">
+                <Field Id="Timer Data"/>
+            </User>
+            <User Type="EventTypeData" Instance="CampaignGoal">
+                <Field Id="EventType"/>
+            </User>
+        </Instances>
+        <Instances Id="scourge">
+            <Image Image="Assets\Textures\talent-zagara-level04-scourgeresearchbundle.dds">
+                <Field Id="Icon"/>
+            </Image>
+            <String String="The Scourge">
+                <Field Id="Name"/>
+            </String>
+            <Text Text="UserData/EventsUIData/scourge_Joke">
+                <Field Id="Joke"/>
+            </Text>
+        </Instances>
+    </CUser>
+</Catalog>

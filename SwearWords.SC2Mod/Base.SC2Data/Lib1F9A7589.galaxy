@@ -1,0 +1,349 @@
+include "TriggerLibs/NativeLib"
+
+include "Lib1F9A7589_h"
+
+//--------------------------------------------------------------------------------------------------
+// Library: Swear Words
+//--------------------------------------------------------------------------------------------------
+// External Library Initialization
+void lib1F9A7589_InitLibraries () {
+    libNtve_InitVariables();
+}
+
+// Variable Initialization
+bool lib1F9A7589_InitVariables_completed = false;
+
+void lib1F9A7589_InitVariables () {
+    if (lib1F9A7589_InitVariables_completed) {
+        return;
+    }
+
+    lib1F9A7589_InitVariables_completed = true;
+
+}
+
+// Functions
+string lib1F9A7589_gf_GetRelevantUIData () {
+    // Variable Declarations
+    string lv_iterator;
+    string lv_nameString;
+
+    // Automatic Variable Declarations
+    string auto10FDAD15_userType;
+    int auto10FDAD15_i;
+
+    // Variable Initialization
+
+    // Implementation
+    auto10FDAD15_userType = "EventsUIData";
+    auto10FDAD15_i = 1;
+    for ( ; auto10FDAD15_i <= UserDataInstanceCount(auto10FDAD15_userType) ; auto10FDAD15_i += 1 ) {
+        lv_iterator = UserDataInstance(auto10FDAD15_userType, auto10FDAD15_i);
+        if ((StringContains((lv_iterator), lv_nameString, c_stringAnywhere, c_stringNoCase) == true)) {
+            return lv_iterator;
+        }
+
+    }
+    return null;
+}
+
+trigger auto_lib1F9A7589_gf_AchievementToast_Trigger = null;
+string auto_lib1F9A7589_gf_AchievementToast_lp_eventData;
+
+void lib1F9A7589_gf_AchievementToast (string lp_eventData) {
+    auto_lib1F9A7589_gf_AchievementToast_lp_eventData = lp_eventData;
+
+    if (auto_lib1F9A7589_gf_AchievementToast_Trigger == null) {
+        auto_lib1F9A7589_gf_AchievementToast_Trigger = TriggerCreate("auto_lib1F9A7589_gf_AchievementToast_TriggerFunc");
+    }
+
+    TriggerExecute(auto_lib1F9A7589_gf_AchievementToast_Trigger, false, false);
+}
+
+bool auto_lib1F9A7589_gf_AchievementToast_TriggerFunc (bool testConds, bool runActions) {
+    string lp_eventData = auto_lib1F9A7589_gf_AchievementToast_lp_eventData;
+
+    // Variable Declarations
+    string lv_eventTypeData;
+    int lv_achievementDialog;
+    const fixed lv_durationRequired = 9.0;
+    fixed lv_duration;
+    int lv_panel;
+    string lv_dataTableName;
+
+    // Automatic Variable Declarations
+    // Variable Initialization
+    lv_eventTypeData = UserDataGetUserInstance("EventsUIData", lp_eventData, "EventType", 1);
+    lv_achievementDialog = c_invalidDialogId;
+    lv_panel = c_invalidDialogControlId;
+    lv_dataTableName = "";
+
+    // Implementation
+    if ((lp_eventData == null)) {
+        TriggerDebugOutput(1, StringExternal("Param/Value/lib_1F9A7589_2D8EBFFB"), false);
+        return true;
+    }
+
+    lib1F9A7589_gv_achievementsDisplayed += 1;
+    while (!((libNtve_gf_PlayerInCinematicMode(1) == false))) {
+        Wait(0.25, c_timeGame);
+    }
+    if ((lib1F9A7589_gv_achievementPosition >= 250)) {
+        lib1F9A7589_gv_achievementPosition = 0;
+    }
+
+    DialogCreate(1000, 400, c_anchorTop, 0, (lib1F9A7589_gv_achievementPosition - 60), true);
+    lib1F9A7589_gv_achievementPosition += 125;
+    DialogSetVisible(DialogLastCreated(), PlayerGroupAll(), true);
+    lv_achievementDialog = DialogLastCreated();
+    DialogSetImageVisible(lv_achievementDialog, false);
+    DialogControlCreateFromTemplate(lv_achievementDialog, c_triggerControlTypePanel, "HotS_TTG_EventsUI/AchievementFrame");
+    lv_panel = DialogControlLastCreated();
+    DialogControlSetPosition(DialogControlLastCreated(), PlayerGroupAll(), c_anchorCenter, 0, 0);
+    DialogControlHookup(lv_panel, c_triggerControlTypeLabel, "NameLabel");
+    libNtve_gf_SetDialogItemText(DialogControlLastCreated(), StringToText(UserDataGetString("EventsUIData", lp_eventData, "Name", 1)), PlayerGroupAll());
+    DialogControlHookup(lv_panel, c_triggerControlTypeLabel, "DescriptionLabel");
+    if ((UserDataGetInt("EventTypeData", lv_eventTypeData, "Prepend Username", 1) == 1)) {
+    }
+    else {
+        libNtve_gf_SetDialogItemText(DialogControlLastCreated(), UserDataGetText("EventsUIData", lp_eventData, "Joke", 1), PlayerGroupAll());
+    }
+    DialogControlHookup(lv_panel, c_triggerControlTypeImage, "IconImage");
+    libNtve_gf_SetDialogItemImage(DialogControlLastCreated(), UserDataGetImagePath("EventsUIData", lp_eventData, "Icon", 1), PlayerGroupAll());
+    DialogControlHookup(lv_panel, c_triggerControlTypeImage, "IconBorder");
+    libNtve_gf_SetDialogItemImage(DialogControlLastCreated(), UserDataGetImagePath("EventTypeData", lv_eventTypeData, "Border Icon", 1), PlayerGroupAll());
+    DialogControlHookup(lv_panel, c_triggerControlTypeLabel, "PointsLabel");
+    if (true) {
+    }
+
+    while (true) {
+        if ((libNtve_gf_PlayerInCinematicMode(1) == true)) {
+            DialogSetVisible(lv_achievementDialog, PlayerGroupAll(), false);
+        }
+        else {
+            DialogSetVisible(lv_achievementDialog, PlayerGroupAll(), true);
+        }
+        Wait(0.25, c_timeReal);
+        lv_duration += 0.25;
+        if ((lv_duration >= lv_durationRequired)) {
+            break;
+        }
+
+    }
+    DialogDestroy(lv_achievementDialog);
+    lib1F9A7589_gv_achievementsDisplayed -= 1;
+    if ((lib1F9A7589_gv_achievementsDisplayed <= 0)) {
+        lib1F9A7589_gv_achievementPosition = 0;
+    }
+
+    return true;
+}
+
+// Triggers
+//--------------------------------------------------------------------------------------------------
+// Trigger: Clock
+//--------------------------------------------------------------------------------------------------
+bool lib1F9A7589_gt_Clock_Func (bool testConds, bool runActions) {
+    // Automatic Variable Declarations
+    return true;
+}
+
+//--------------------------------------------------------------------------------------------------
+void lib1F9A7589_gt_Clock_Init () {
+    lib1F9A7589_gt_Clock = TriggerCreate("lib1F9A7589_gt_Clock_Func");
+    TriggerAddEventTimePeriodic(lib1F9A7589_gt_Clock, 2.0, c_timeGame);
+}
+
+//--------------------------------------------------------------------------------------------------
+// Trigger: Open Banks
+//--------------------------------------------------------------------------------------------------
+bool lib1F9A7589_gt_OpenBanks_Func (bool testConds, bool runActions) {
+    // Automatic Variable Declarations
+    // Actions
+    if (!runActions) {
+        return true;
+    }
+
+    BankLoad("TriviaBank", 1);
+    lib1F9A7589_gv_eventBank = BankLastCreated();
+    Wait(2.0, c_timeGame);
+    if (true) {
+    }
+
+    return true;
+}
+
+//--------------------------------------------------------------------------------------------------
+void lib1F9A7589_gt_OpenBanks_Init () {
+    lib1F9A7589_gt_OpenBanks = TriggerCreate("lib1F9A7589_gt_OpenBanks_Func");
+    TriggerAddEventMapInit(lib1F9A7589_gt_OpenBanks);
+}
+
+//--------------------------------------------------------------------------------------------------
+// Trigger: Hotkey Gremlin
+//--------------------------------------------------------------------------------------------------
+bool lib1F9A7589_gt_HotkeyGremlin_Func (bool testConds, bool runActions) {
+    // Automatic Variable Declarations
+    // Actions
+    if (!runActions) {
+        return true;
+    }
+
+    UnitControlGroupAddUnits(1, 1, UnitControlGroup(1, 1));
+    return true;
+}
+
+//--------------------------------------------------------------------------------------------------
+void lib1F9A7589_gt_HotkeyGremlin_Init () {
+    lib1F9A7589_gt_HotkeyGremlin = TriggerCreate("lib1F9A7589_gt_HotkeyGremlin_Func");
+}
+
+//--------------------------------------------------------------------------------------------------
+// Trigger: Spawn Raven
+//--------------------------------------------------------------------------------------------------
+bool lib1F9A7589_gt_SpawnRaven_Func (bool testConds, bool runActions) {
+    // Automatic Variable Declarations
+    // Actions
+    if (!runActions) {
+        return true;
+    }
+
+    libNtve_gf_CreateUnitsWithDefaultFacing(1, "Raven", 0, 2, CameraGetTarget(1));
+    UnitSetPropertyFixed(UnitLastCreated(), c_unitPropEnergyMax, 0.0);
+    UnitSetPropertyFixed(UnitLastCreated(), c_unitPropEnergy, 0.0);
+    return true;
+}
+
+//--------------------------------------------------------------------------------------------------
+void lib1F9A7589_gt_SpawnRaven_Init () {
+    lib1F9A7589_gt_SpawnRaven = TriggerCreate("lib1F9A7589_gt_SpawnRaven_Func");
+}
+
+//--------------------------------------------------------------------------------------------------
+// Trigger: Taxed
+//--------------------------------------------------------------------------------------------------
+bool lib1F9A7589_gt_Taxed_Func (bool testConds, bool runActions) {
+    // Automatic Variable Declarations
+    // Actions
+    if (!runActions) {
+        return true;
+    }
+
+    PlayerModifyPropertyInt(1, c_playerPropMinerals, c_playerPropOperSubtract, 500);
+    PlayerModifyPropertyInt(1, c_playerPropVespene, c_playerPropOperSubtract, 500);
+    return true;
+}
+
+//--------------------------------------------------------------------------------------------------
+void lib1F9A7589_gt_Taxed_Init () {
+    lib1F9A7589_gt_Taxed = TriggerCreate("lib1F9A7589_gt_Taxed_Func");
+}
+
+//--------------------------------------------------------------------------------------------------
+// Trigger: Moo Spawn
+//--------------------------------------------------------------------------------------------------
+bool lib1F9A7589_gt_MooSpawn_Func (bool testConds, bool runActions) {
+    // Automatic Variable Declarations
+    // Actions
+    if (!runActions) {
+        return true;
+    }
+
+    libNtve_gf_CreateUnitsWithDefaultFacing(1, "Cow", 0, 0, CameraGetTarget(1));
+    return true;
+}
+
+//--------------------------------------------------------------------------------------------------
+void lib1F9A7589_gt_MooSpawn_Init () {
+    lib1F9A7589_gt_MooSpawn = TriggerCreate("lib1F9A7589_gt_MooSpawn_Func");
+}
+
+//--------------------------------------------------------------------------------------------------
+// Trigger: Activate Hunt
+//--------------------------------------------------------------------------------------------------
+bool lib1F9A7589_gt_ActivateHunt_Func (bool testConds, bool runActions) {
+    // Automatic Variable Declarations
+    // Actions
+    if (!runActions) {
+        return true;
+    }
+
+    lib1F9A7589_gv_huntActive = true;
+    return true;
+}
+
+//--------------------------------------------------------------------------------------------------
+void lib1F9A7589_gt_ActivateHunt_Init () {
+    lib1F9A7589_gt_ActivateHunt = TriggerCreate("lib1F9A7589_gt_ActivateHunt_Func");
+}
+
+//--------------------------------------------------------------------------------------------------
+// Trigger: Hunt Finished
+//--------------------------------------------------------------------------------------------------
+bool lib1F9A7589_gt_HuntFinished_Func (bool testConds, bool runActions) {
+    // Automatic Variable Declarations
+    // Actions
+    if (!runActions) {
+        return true;
+    }
+
+    lib1F9A7589_gv_huntActive = false;
+    return true;
+}
+
+//--------------------------------------------------------------------------------------------------
+void lib1F9A7589_gt_HuntFinished_Init () {
+    lib1F9A7589_gt_HuntFinished = TriggerCreate("lib1F9A7589_gt_HuntFinished_Func");
+    TriggerAddEventUnitDied(lib1F9A7589_gt_HuntFinished, UnitRefFromVariable("lib1F9A7589_gv_huntUnit"));
+}
+
+//--------------------------------------------------------------------------------------------------
+// Trigger: Remove Hunt Invuln on attack wave
+//--------------------------------------------------------------------------------------------------
+bool lib1F9A7589_gt_RemoveHuntInvulnonattackwave_Func (bool testConds, bool runActions) {
+    // Automatic Variable Declarations
+    // Conditions
+    if (testConds) {
+        if (!((lib1F9A7589_gv_huntActive == true))) {
+            return false;
+        }
+    }
+
+    return true;
+}
+
+//--------------------------------------------------------------------------------------------------
+void lib1F9A7589_gt_RemoveHuntInvulnonattackwave_Init () {
+    lib1F9A7589_gt_RemoveHuntInvulnonattackwave = TriggerCreate("lib1F9A7589_gt_RemoveHuntInvulnonattackwave_Func");
+    TriggerAddEventPlayerAIWave(lib1F9A7589_gt_RemoveHuntInvulnonattackwave, c_playerAny);
+}
+
+void lib1F9A7589_InitTriggers () {
+    lib1F9A7589_gt_Clock_Init();
+    lib1F9A7589_gt_OpenBanks_Init();
+    lib1F9A7589_gt_HotkeyGremlin_Init();
+    lib1F9A7589_gt_SpawnRaven_Init();
+    lib1F9A7589_gt_Taxed_Init();
+    lib1F9A7589_gt_MooSpawn_Init();
+    lib1F9A7589_gt_ActivateHunt_Init();
+    lib1F9A7589_gt_HuntFinished_Init();
+    lib1F9A7589_gt_RemoveHuntInvulnonattackwave_Init();
+}
+
+//--------------------------------------------------------------------------------------------------
+// Library Initialization
+//--------------------------------------------------------------------------------------------------
+bool lib1F9A7589_InitLib_completed = false;
+
+void lib1F9A7589_InitLib () {
+    if (lib1F9A7589_InitLib_completed) {
+        return;
+    }
+
+    lib1F9A7589_InitLib_completed = true;
+
+    lib1F9A7589_InitLibraries();
+    lib1F9A7589_InitVariables();
+    lib1F9A7589_InitTriggers();
+}
+

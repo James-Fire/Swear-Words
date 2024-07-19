@@ -1,0 +1,2 @@
+﻿User/Name/EventTypeData=Event Type Data
+User/Name/EventsUIData=Events UI Data

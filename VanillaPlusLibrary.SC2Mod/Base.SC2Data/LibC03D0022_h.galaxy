@@ -1,0 +1,27 @@
+include "TriggerLibs/natives"
+
+//--------------------------------------------------------------------------------------------------
+// Library: VanillaPlusLibrary
+//--------------------------------------------------------------------------------------------------
+// Variable Declarations
+int libC03D0022_gv_objectiveUnitMustSurvive;
+
+// Function Declarations
+void libC03D0022_gf_SpawnInfiniteUnitNydus (string lp_unitType, int lp_unitCount, int lp_spawnDelay, int lp_spawnCount, point lp_point, int lp_owner, bool lp_reveal);
+void libC03D0022_gf_SpawnUnitsbyDroppod (int lp_unitCount, string lp_unitType, point lp_point);
+void libC03D0022_gf_UnitUnitGroupMinimapPing (text lp_pingTooltip, unit lp_unit, unitgroup lp_unitGroup);
+bool libC03D0022_gf_BooleanTernaryOperator (bool lp_a, bool lp_b, bool lp_c);
+int libC03D0022_gf_IntegerTernaryOperator (bool lp_a, int lp_b, int lp_c);
+fixed libC03D0022_gf_RealTernaryOperator (bool lp_a, fixed lp_b, fixed lp_c);
+void libC03D0022_gf_CreateBulliesinCircle (int lp_rebuildCount, string lp_unitType, point lp_point, int lp_owner, int lp_radius, int lp_count);
+void libC03D0022_gf_ChatUpgradeText (string lp_upgrade, string lp_upgradeName, string lp_upgradeEffect);
+
+// Trigger Declarations
+trigger libC03D0022_gt_TutorialIndicatorOnUnit;
+trigger libC03D0022_gt_UnitMustSurviveObjective;
+trigger libC03D0022_gt_ObjectiveUnitMustSurviveCreateQ;
+trigger libC03D0022_gt_ObjectiveUnitSurviveComplete;
+
+// Library Initialization
+void libC03D0022_InitVariables ();
+
