@@ -20,6 +20,12 @@ void lib1F9A7589_InitVariables () {
 
     lib1F9A7589_InitVariables_completed = true;
 
+    lib1F9A7589_gv_showDebugChats = true;
+    lib1F9A7589_gv_eventString = "";
+    lib1F9A7589_gv_spawnPoint = PlayerStartLocation(2);
+    lib1F9A7589_gv_attackwaves = true;
+    lib1F9A7589_gv_hostilePlayer = 2;
+    lib1F9A7589_gv_huntInvulnUnits = UnitGroupEmpty();
 }
 
 // Functions
@@ -141,17 +147,418 @@ bool auto_lib1F9A7589_gf_AchievementToast_TriggerFunc (bool testConds, bool runA
 
 // Triggers
 //--------------------------------------------------------------------------------------------------
+// Trigger: Debug Info
+//--------------------------------------------------------------------------------------------------
+bool lib1F9A7589_gt_DebugInfo_Func (bool testConds, bool runActions) {
+    // Automatic Variable Declarations
+    // Actions
+    if (!runActions) {
+        return true;
+    }
+
+    if ((lib1F9A7589_gv_showDebugChats == false)) {
+        lib1F9A7589_gv_showDebugChats = true;
+        UIDisplayMessage(PlayerGroupAll(), c_messageAreaChat, StringExternal("Param/Value/lib_1F9A7589_30C8B6FC"));
+    }
+    else {
+        lib1F9A7589_gv_showDebugChats = false;
+        UIDisplayMessage(PlayerGroupAll(), c_messageAreaChat, StringExternal("Param/Value/lib_1F9A7589_F82FB88B"));
+    }
+    return true;
+}
+
+//--------------------------------------------------------------------------------------------------
+void lib1F9A7589_gt_DebugInfo_Init () {
+    lib1F9A7589_gt_DebugInfo = TriggerCreate("lib1F9A7589_gt_DebugInfo_Func");
+    TriggerAddEventChatMessage(lib1F9A7589_gt_DebugInfo, c_playerAny, "SwearDebug", true);
+}
+
+//--------------------------------------------------------------------------------------------------
+// Trigger: Random Testing
+//--------------------------------------------------------------------------------------------------
+bool lib1F9A7589_gt_RandomTesting_Func (bool testConds, bool runActions) {
+    // Automatic Variable Declarations
+    // Actions
+    if (!runActions) {
+        return true;
+    }
+
+    if ((lib1F9A7589_gv_swearTest == false)) {
+        lib1F9A7589_gv_swearTest = true;
+        UIDisplayMessage(PlayerGroupAll(), c_messageAreaChat, StringExternal("Param/Value/lib_1F9A7589_FE4154C9"));
+    }
+    else {
+        lib1F9A7589_gv_swearTest = false;
+        UIDisplayMessage(PlayerGroupAll(), c_messageAreaChat, StringExternal("Param/Value/lib_1F9A7589_4DB9289C"));
+    }
+    return true;
+}
+
+//--------------------------------------------------------------------------------------------------
+void lib1F9A7589_gt_RandomTesting_Init () {
+    lib1F9A7589_gt_RandomTesting = TriggerCreate("lib1F9A7589_gt_RandomTesting_Func");
+    TriggerAddEventChatMessage(lib1F9A7589_gt_RandomTesting, c_playerAny, "SwearTest", true);
+}
+
+//--------------------------------------------------------------------------------------------------
+// Trigger: Test Colossus
+//--------------------------------------------------------------------------------------------------
+bool lib1F9A7589_gt_TestColossus_Func (bool testConds, bool runActions) {
+    // Automatic Variable Declarations
+    // Actions
+    if (!runActions) {
+        return true;
+    }
+
+    if ((lib1F9A7589_gv_showDebugChats == true)) {
+        UIDisplayMessage(PlayerGroupAll(), c_messageAreaChat, StringExternal("Param/Value/lib_1F9A7589_8B441777"));
+    }
+
+    BankValueSetFromInt(lib1F9A7589_gv_eventBank, "Events", "Event Count", (lib1F9A7589_gv_eventIncrement+1));
+    BankValueSetFromString(lib1F9A7589_gv_eventBank, "Events", "Event String", "Warp");
+    return true;
+}
+
+//--------------------------------------------------------------------------------------------------
+void lib1F9A7589_gt_TestColossus_Init () {
+    lib1F9A7589_gt_TestColossus = TriggerCreate("lib1F9A7589_gt_TestColossus_Func");
+    TriggerAddEventChatMessage(lib1F9A7589_gt_TestColossus, c_playerAny, "Warp", true);
+}
+
+//--------------------------------------------------------------------------------------------------
+// Trigger: Test Naga
+//--------------------------------------------------------------------------------------------------
+bool lib1F9A7589_gt_TestNaga_Func (bool testConds, bool runActions) {
+    // Automatic Variable Declarations
+    // Actions
+    if (!runActions) {
+        return true;
+    }
+
+    if ((lib1F9A7589_gv_showDebugChats == true)) {
+        UIDisplayMessage(PlayerGroupAll(), c_messageAreaChat, StringExternal("Param/Value/lib_1F9A7589_485EDE98"));
+    }
+
+    BankValueSetFromInt(lib1F9A7589_gv_eventBank, "Events", "Event Count", (lib1F9A7589_gv_eventIncrement+1));
+    BankValueSetFromString(lib1F9A7589_gv_eventBank, "Events", "Event String", "Naga");
+    return true;
+}
+
+//--------------------------------------------------------------------------------------------------
+void lib1F9A7589_gt_TestNaga_Init () {
+    lib1F9A7589_gt_TestNaga = TriggerCreate("lib1F9A7589_gt_TestNaga_Func");
+    TriggerAddEventChatMessage(lib1F9A7589_gt_TestNaga, c_playerAny, "Naga", true);
+}
+
+//--------------------------------------------------------------------------------------------------
+// Trigger: Test Magic
+//--------------------------------------------------------------------------------------------------
+bool lib1F9A7589_gt_TestMagic_Func (bool testConds, bool runActions) {
+    // Automatic Variable Declarations
+    // Actions
+    if (!runActions) {
+        return true;
+    }
+
+    if ((lib1F9A7589_gv_showDebugChats == true)) {
+        UIDisplayMessage(PlayerGroupAll(), c_messageAreaChat, StringExternal("Param/Value/lib_1F9A7589_040A3628"));
+    }
+
+    BankValueSetFromInt(lib1F9A7589_gv_eventBank, "Events", "Event Count", (lib1F9A7589_gv_eventIncrement+1));
+    BankValueSetFromString(lib1F9A7589_gv_eventBank, "Events", "Event String", "Magic");
+    return true;
+}
+
+//--------------------------------------------------------------------------------------------------
+void lib1F9A7589_gt_TestMagic_Init () {
+    lib1F9A7589_gt_TestMagic = TriggerCreate("lib1F9A7589_gt_TestMagic_Func");
+    TriggerAddEventChatMessage(lib1F9A7589_gt_TestMagic, c_playerAny, "Magic", true);
+}
+
+//--------------------------------------------------------------------------------------------------
+// Trigger: Test Gremlin
+//--------------------------------------------------------------------------------------------------
+bool lib1F9A7589_gt_TestGremlin_Func (bool testConds, bool runActions) {
+    // Automatic Variable Declarations
+    // Actions
+    if (!runActions) {
+        return true;
+    }
+
+    if ((lib1F9A7589_gv_showDebugChats == true)) {
+        UIDisplayMessage(PlayerGroupAll(), c_messageAreaChat, StringExternal("Param/Value/lib_1F9A7589_4BF8CD42"));
+    }
+
+    BankValueSetFromInt(lib1F9A7589_gv_eventBank, "Events", "Event Count", (lib1F9A7589_gv_eventIncrement+1));
+    BankValueSetFromString(lib1F9A7589_gv_eventBank, "Events", "Event String", "Hotkey");
+    return true;
+}
+
+//--------------------------------------------------------------------------------------------------
+void lib1F9A7589_gt_TestGremlin_Init () {
+    lib1F9A7589_gt_TestGremlin = TriggerCreate("lib1F9A7589_gt_TestGremlin_Func");
+    TriggerAddEventChatMessage(lib1F9A7589_gt_TestGremlin, c_playerAny, "Hotkey", true);
+}
+
+//--------------------------------------------------------------------------------------------------
+// Trigger: Test Raven
+//--------------------------------------------------------------------------------------------------
+bool lib1F9A7589_gt_TestRaven_Func (bool testConds, bool runActions) {
+    // Automatic Variable Declarations
+    // Actions
+    if (!runActions) {
+        return true;
+    }
+
+    if ((lib1F9A7589_gv_showDebugChats == true)) {
+        UIDisplayMessage(PlayerGroupAll(), c_messageAreaChat, StringExternal("Param/Value/lib_1F9A7589_2192C3D4"));
+    }
+
+    BankValueSetFromInt(lib1F9A7589_gv_eventBank, "Events", "Event Count", (lib1F9A7589_gv_eventIncrement+1));
+    BankValueSetFromString(lib1F9A7589_gv_eventBank, "Events", "Event String", "Raven");
+    return true;
+}
+
+//--------------------------------------------------------------------------------------------------
+void lib1F9A7589_gt_TestRaven_Init () {
+    lib1F9A7589_gt_TestRaven = TriggerCreate("lib1F9A7589_gt_TestRaven_Func");
+    TriggerAddEventChatMessage(lib1F9A7589_gt_TestRaven, c_playerAny, "Raven", true);
+}
+
+//--------------------------------------------------------------------------------------------------
+// Trigger: Test Death
+//--------------------------------------------------------------------------------------------------
+bool lib1F9A7589_gt_TestDeath_Func (bool testConds, bool runActions) {
+    // Automatic Variable Declarations
+    // Actions
+    if (!runActions) {
+        return true;
+    }
+
+    if ((lib1F9A7589_gv_showDebugChats == true)) {
+        UIDisplayMessage(PlayerGroupAll(), c_messageAreaChat, StringExternal("Param/Value/lib_1F9A7589_BFA1382E"));
+    }
+
+    BankValueSetFromInt(lib1F9A7589_gv_eventBank, "Events", "Event Count", (lib1F9A7589_gv_eventIncrement+1));
+    BankValueSetFromString(lib1F9A7589_gv_eventBank, "Events", "Event String", "Death");
+    return true;
+}
+
+//--------------------------------------------------------------------------------------------------
+void lib1F9A7589_gt_TestDeath_Init () {
+    lib1F9A7589_gt_TestDeath = TriggerCreate("lib1F9A7589_gt_TestDeath_Func");
+    TriggerAddEventChatMessage(lib1F9A7589_gt_TestDeath, c_playerAny, "Death", true);
+}
+
+//--------------------------------------------------------------------------------------------------
+// Trigger: Test Taxes
+//--------------------------------------------------------------------------------------------------
+bool lib1F9A7589_gt_TestTaxes_Func (bool testConds, bool runActions) {
+    // Automatic Variable Declarations
+    // Actions
+    if (!runActions) {
+        return true;
+    }
+
+    if ((lib1F9A7589_gv_showDebugChats == true)) {
+        UIDisplayMessage(PlayerGroupAll(), c_messageAreaChat, StringExternal("Param/Value/lib_1F9A7589_82F8A320"));
+    }
+
+    BankValueSetFromInt(lib1F9A7589_gv_eventBank, "Events", "Event Count", (lib1F9A7589_gv_eventIncrement+1));
+    BankValueSetFromString(lib1F9A7589_gv_eventBank, "Events", "Event String", "Tax");
+    return true;
+}
+
+//--------------------------------------------------------------------------------------------------
+void lib1F9A7589_gt_TestTaxes_Init () {
+    lib1F9A7589_gt_TestTaxes = TriggerCreate("lib1F9A7589_gt_TestTaxes_Func");
+    TriggerAddEventChatMessage(lib1F9A7589_gt_TestTaxes, c_playerAny, "Tax", true);
+}
+
+//--------------------------------------------------------------------------------------------------
+// Trigger: Test Moo
+//--------------------------------------------------------------------------------------------------
+bool lib1F9A7589_gt_TestMoo_Func (bool testConds, bool runActions) {
+    // Automatic Variable Declarations
+    // Actions
+    if (!runActions) {
+        return true;
+    }
+
+    if ((lib1F9A7589_gv_showDebugChats == true)) {
+        UIDisplayMessage(PlayerGroupAll(), c_messageAreaChat, StringExternal("Param/Value/lib_1F9A7589_D4E111A9"));
+    }
+
+    BankValueSetFromInt(lib1F9A7589_gv_eventBank, "Events", "Event Count", (lib1F9A7589_gv_eventIncrement+1));
+    BankValueSetFromString(lib1F9A7589_gv_eventBank, "Events", "Event String", "Moo");
+    return true;
+}
+
+//--------------------------------------------------------------------------------------------------
+void lib1F9A7589_gt_TestMoo_Init () {
+    lib1F9A7589_gt_TestMoo = TriggerCreate("lib1F9A7589_gt_TestMoo_Func");
+    TriggerAddEventChatMessage(lib1F9A7589_gt_TestMoo, c_playerAny, "Moo", true);
+}
+
+//--------------------------------------------------------------------------------------------------
+// Trigger: Test Hunt
+//--------------------------------------------------------------------------------------------------
+bool lib1F9A7589_gt_TestHunt_Func (bool testConds, bool runActions) {
+    // Automatic Variable Declarations
+    // Actions
+    if (!runActions) {
+        return true;
+    }
+
+    if ((lib1F9A7589_gv_showDebugChats == true)) {
+        UIDisplayMessage(PlayerGroupAll(), c_messageAreaChat, StringExternal("Param/Value/lib_1F9A7589_CE71A39E"));
+    }
+
+    BankValueSetFromInt(lib1F9A7589_gv_eventBank, "Events", "Event Count", (lib1F9A7589_gv_eventIncrement+1));
+    BankValueSetFromString(lib1F9A7589_gv_eventBank, "Events", "Event String", "Hunt");
+    return true;
+}
+
+//--------------------------------------------------------------------------------------------------
+void lib1F9A7589_gt_TestHunt_Init () {
+    lib1F9A7589_gt_TestHunt = TriggerCreate("lib1F9A7589_gt_TestHunt_Func");
+    TriggerAddEventChatMessage(lib1F9A7589_gt_TestHunt, c_playerAny, "Hunt", true);
+}
+
+//--------------------------------------------------------------------------------------------------
 // Trigger: Clock
 //--------------------------------------------------------------------------------------------------
 bool lib1F9A7589_gt_Clock_Func (bool testConds, bool runActions) {
     // Automatic Variable Declarations
+    string auto8DECB659_val;
+
+    // Conditions
+    if (testConds) {
+        if (!((TriggerIsEnabled(TriggerGetCurrent()) == true))) {
+            return false;
+        }
+    }
+
+    // Actions
+    if (!runActions) {
+        return true;
+    }
+
+    TriggerEnable(TriggerGetCurrent(), false);
+    if ((lib1F9A7589_gv_eventBank == null)) {
+        TriggerDebugOutput(1, StringExternal("Param/Value/lib_1F9A7589_D931A29E"), false);
+        TriggerExecute(lib1F9A7589_gt_OpenBanks, true, true);
+    }
+
+    if (((lib1F9A7589_gv_eventIncrement < BankValueGetAsInt(lib1F9A7589_gv_eventBank, "Events", "Event Count")) || (lib1F9A7589_gv_swearTest == true))) {
+        while (!((libNtve_gf_PlayerInCinematicMode(1) == false))) {
+            Wait(1.0, c_timeGame);
+        }
+        lib1F9A7589_gv_eventString = BankValueGetAsString(lib1F9A7589_gv_eventBank, "Events", "Event String");
+        lib1F9A7589_gv_eventIncrement += 1;
+        auto8DECB659_val = lib1F9A7589_gv_eventString;
+        if (auto8DECB659_val == "Warp") {
+            TriggerExecute(lib1F9A7589_gt_SpawnColossus, true, false);
+        }
+        else if (auto8DECB659_val == "Naga") {
+            TriggerExecute(lib1F9A7589_gt_SpawnNaga, true, false);
+        }
+        else if (auto8DECB659_val == "Magic") {
+            TriggerExecute(lib1F9A7589_gt_SpawnMagic, true, false);
+        }
+        else if (auto8DECB659_val == "Hotkey") {
+            TriggerExecute(lib1F9A7589_gt_HotkeyGremlin, true, false);
+        }
+        else if (auto8DECB659_val == "Raven") {
+            TriggerExecute(lib1F9A7589_gt_SpawnRaven, true, false);
+        }
+        else if (auto8DECB659_val == "Death") {
+            TriggerExecute(lib1F9A7589_gt_SpawnDeathBunker, true, false);
+        }
+        else if (auto8DECB659_val == "Tax") {
+            TriggerExecute(lib1F9A7589_gt_Taxed, true, false);
+        }
+        else if (auto8DECB659_val == "Moo") {
+            TriggerExecute(lib1F9A7589_gt_MooSpawn, true, false);
+        }
+        else if (auto8DECB659_val == "Hunt") {
+            TriggerExecute(lib1F9A7589_gt_ActivateHunt, true, false);
+        }
+        else {
+        }
+        BankValueSetFromInt(lib1F9A7589_gv_eventBank, "Events", "Event Applied Count", lib1F9A7589_gv_eventAppliedIncrement);
+    }
+
+    TriggerEnable(TriggerGetCurrent(), true);
     return true;
 }
 
 //--------------------------------------------------------------------------------------------------
 void lib1F9A7589_gt_Clock_Init () {
     lib1F9A7589_gt_Clock = TriggerCreate("lib1F9A7589_gt_Clock_Func");
-    TriggerAddEventTimePeriodic(lib1F9A7589_gt_Clock, 2.0, c_timeGame);
+    TriggerAddEventTimePeriodic(lib1F9A7589_gt_Clock, 5.0, c_timeGame);
+}
+
+//--------------------------------------------------------------------------------------------------
+// Trigger: Test Clock
+//--------------------------------------------------------------------------------------------------
+bool lib1F9A7589_gt_TestClock_Func (bool testConds, bool runActions) {
+    // Automatic Variable Declarations
+    int auto809E226F_val;
+
+    // Conditions
+    if (testConds) {
+        if (!((lib1F9A7589_gv_swearTest == true))) {
+            return false;
+        }
+
+        if (!((TriggerIsEnabled(TriggerGetCurrent()) == true))) {
+            return false;
+        }
+    }
+
+    // Actions
+    if (!runActions) {
+        return true;
+    }
+
+    auto809E226F_val = RandomInt(1, 8);
+    if (auto809E226F_val == 0) {
+        TriggerExecute(lib1F9A7589_gt_TestNaga, true, false);
+    }
+    else if (auto809E226F_val == 1) {
+        TriggerExecute(lib1F9A7589_gt_TestMagic, true, false);
+    }
+    else if (auto809E226F_val == 2) {
+        TriggerExecute(lib1F9A7589_gt_TestGremlin, true, false);
+    }
+    else if (auto809E226F_val == 3) {
+        TriggerExecute(lib1F9A7589_gt_TestRaven, true, false);
+    }
+    else if (auto809E226F_val == 4) {
+        TriggerExecute(lib1F9A7589_gt_TestDeath, true, false);
+    }
+    else if (auto809E226F_val == 5) {
+        TriggerExecute(lib1F9A7589_gt_TestTaxes, true, false);
+    }
+    else if (auto809E226F_val == 6) {
+        TriggerExecute(lib1F9A7589_gt_TestMoo, true, false);
+    }
+    else if (auto809E226F_val == 7) {
+        TriggerExecute(lib1F9A7589_gt_TestHunt, true, false);
+    }
+    else if (auto809E226F_val == 8) {
+        TriggerExecute(lib1F9A7589_gt_TestColossus, true, false);
+    }
+    else {
+    }
+    return true;
+}
+
+//--------------------------------------------------------------------------------------------------
+void lib1F9A7589_gt_TestClock_Init () {
+    lib1F9A7589_gt_TestClock = TriggerCreate("lib1F9A7589_gt_TestClock_Func");
+    TriggerAddEventTimePeriodic(lib1F9A7589_gt_TestClock, 120.0, c_timeGame);
 }
 
 //--------------------------------------------------------------------------------------------------
@@ -164,12 +571,17 @@ bool lib1F9A7589_gt_OpenBanks_Func (bool testConds, bool runActions) {
         return true;
     }
 
-    BankLoad("TriviaBank", 1);
-    lib1F9A7589_gv_eventBank = BankLastCreated();
-    Wait(2.0, c_timeGame);
-    if (true) {
+    if ((lib1F9A7589_gv_showDebugChats == true)) {
+        UIDisplayMessage(PlayerGroupAll(), c_messageAreaChat, StringExternal("Param/Value/lib_1F9A7589_CA6B0372"));
     }
 
+    BankLoad("VanillaPlusWOL", 1);
+    lib1F9A7589_gv_eventBank = BankLastCreated();
+    BankSectionCreate(lib1F9A7589_gv_eventBank, "Events");
+    BankValueSetFromInt(lib1F9A7589_gv_eventBank, "Events", "Event Count", lib1F9A7589_gv_eventIncrement);
+    BankValueSetFromInt(lib1F9A7589_gv_eventBank, "Events", "Event Applied Count", lib1F9A7589_gv_eventAppliedIncrement);
+    BankValueSetFromString(lib1F9A7589_gv_eventBank, "Events", "Event String", lib1F9A7589_gv_eventString);
+    BankSave(lib1F9A7589_gv_eventBank);
     return true;
 }
 
@@ -180,16 +592,155 @@ void lib1F9A7589_gt_OpenBanks_Init () {
 }
 
 //--------------------------------------------------------------------------------------------------
-// Trigger: Hotkey Gremlin
+// Trigger: Spawn Colossus
 //--------------------------------------------------------------------------------------------------
-bool lib1F9A7589_gt_HotkeyGremlin_Func (bool testConds, bool runActions) {
+bool lib1F9A7589_gt_SpawnColossus_Func (bool testConds, bool runActions) {
     // Automatic Variable Declarations
     // Actions
     if (!runActions) {
         return true;
     }
 
-    UnitControlGroupAddUnits(1, 1, UnitControlGroup(1, 1));
+    if ((lib1F9A7589_gv_showDebugChats == true)) {
+        UIDisplayMessage(PlayerGroupAll(), c_messageAreaChat, StringExternal("Param/Value/lib_1F9A7589_4E3722CC"));
+    }
+
+    libNtve_gf_CreateUnitsWithDefaultFacing(6, "Colossus", 0, lib1F9A7589_gv_hostilePlayer, lib1F9A7589_gv_spawnPoint);
+    if ((lib1F9A7589_gv_attackwaves == true)) {
+        AISetGroupScriptControlled(UnitLastCreatedGroup(), false);
+        AIAttackWaveUseGroup(lib1F9A7589_gv_hostilePlayer, UnitLastCreatedGroup());
+    }
+    else {
+        UnitGroupIssueOrder(UnitLastCreatedGroup(), OrderTargetingUnit(AbilityCommand("attack", 0), lib1F9A7589_gv_attackTarget), c_orderQueueReplace);
+    }
+    return true;
+}
+
+//--------------------------------------------------------------------------------------------------
+void lib1F9A7589_gt_SpawnColossus_Init () {
+    lib1F9A7589_gt_SpawnColossus = TriggerCreate("lib1F9A7589_gt_SpawnColossus_Func");
+}
+
+//--------------------------------------------------------------------------------------------------
+// Trigger: Spawn Naga
+//--------------------------------------------------------------------------------------------------
+bool lib1F9A7589_gt_SpawnNaga_Func (bool testConds, bool runActions) {
+    // Automatic Variable Declarations
+    // Actions
+    if (!runActions) {
+        return true;
+    }
+
+    if ((lib1F9A7589_gv_showDebugChats == true)) {
+        UIDisplayMessage(PlayerGroupAll(), c_messageAreaChat, StringExternal("Param/Value/lib_1F9A7589_522B1C92"));
+    }
+
+    libNtve_gf_CreateUnitsWithDefaultFacing(1, "HighTemplar", 0, lib1F9A7589_gv_hostilePlayer, lib1F9A7589_gv_spawnPoint);
+    AISetGroupScriptControlled(UnitLastCreatedGroup(), false);
+    if ((lib1F9A7589_gv_attackwaves == true)) {
+        AISetGroupScriptControlled(UnitLastCreatedGroup(), false);
+        AIAttackWaveUseGroup(lib1F9A7589_gv_hostilePlayer, UnitLastCreatedGroup());
+    }
+    else {
+        UnitGroupIssueOrder(UnitLastCreatedGroup(), OrderTargetingUnit(AbilityCommand("attack", 0), lib1F9A7589_gv_attackTarget), c_orderQueueReplace);
+    }
+    return true;
+}
+
+//--------------------------------------------------------------------------------------------------
+void lib1F9A7589_gt_SpawnNaga_Init () {
+    lib1F9A7589_gt_SpawnNaga = TriggerCreate("lib1F9A7589_gt_SpawnNaga_Func");
+}
+
+//--------------------------------------------------------------------------------------------------
+// Trigger: Spawn Magic
+//--------------------------------------------------------------------------------------------------
+bool lib1F9A7589_gt_SpawnMagic_Func (bool testConds, bool runActions) {
+    // Automatic Variable Declarations
+    const int auto7A87385B_n = 6;
+    int auto7A87385B_i;
+
+    // Actions
+    if (!runActions) {
+        return true;
+    }
+
+    if ((lib1F9A7589_gv_showDebugChats == true)) {
+        UIDisplayMessage(PlayerGroupAll(), c_messageAreaChat, StringExternal("Param/Value/lib_1F9A7589_6D62D010"));
+    }
+
+    TechTreeUpgradeAddLevel(lib1F9A7589_gv_hostilePlayer, "PsiStormTech", 1);
+    for (auto7A87385B_i = 1; auto7A87385B_i <= auto7A87385B_n; auto7A87385B_i += 1) {
+        libNtve_gf_CreateUnitsWithDefaultFacing(1, "HighTemplar", 0, lib1F9A7589_gv_hostilePlayer, lib1F9A7589_gv_spawnPoint);
+        UnitSetPropertyFixed(UnitLastCreated(), c_unitPropEnergyPercent, 100.0);
+    }
+    if ((lib1F9A7589_gv_attackwaves == true)) {
+        AISetGroupScriptControlled(UnitLastCreatedGroup(), false);
+        AIAttackWaveUseGroup(lib1F9A7589_gv_hostilePlayer, UnitLastCreatedGroup());
+    }
+    else {
+        UnitGroupIssueOrder(UnitLastCreatedGroup(), OrderTargetingUnit(AbilityCommand("attack", 0), lib1F9A7589_gv_attackTarget), c_orderQueueReplace);
+    }
+    return true;
+}
+
+//--------------------------------------------------------------------------------------------------
+void lib1F9A7589_gt_SpawnMagic_Init () {
+    lib1F9A7589_gt_SpawnMagic = TriggerCreate("lib1F9A7589_gt_SpawnMagic_Func");
+}
+
+//--------------------------------------------------------------------------------------------------
+// Trigger: Hotkey Gremlin
+//--------------------------------------------------------------------------------------------------
+bool lib1F9A7589_gt_HotkeyGremlin_Func (bool testConds, bool runActions) {
+    int init_i;
+
+    // Variable Declarations
+    unitgroup[3] lv_controlGroups;
+    int lv_filledControlGroupsCount;
+    int[11] lv_filledControlGroups;
+    int lv_iterator;
+    int lv_iterator2;
+    int[3] lv_swapGroups;
+
+    // Automatic Variable Declarations
+    const int auto93F48446_ae = 9;
+    const int auto93F48446_ai = 1;
+
+    // Variable Initialization
+    for (init_i = 0; init_i <= 2; init_i += 1) {
+        lv_controlGroups[init_i] = UnitGroupEmpty();
+    }
+
+    // Actions
+    if (!runActions) {
+        return true;
+    }
+
+    if ((lib1F9A7589_gv_showDebugChats == true)) {
+        UIDisplayMessage(PlayerGroupAll(), c_messageAreaChat, StringExternal("Param/Value/lib_1F9A7589_B6C080BD"));
+    }
+
+    lv_iterator = 0;
+    for ( ; ( (auto93F48446_ai >= 0 && lv_iterator <= auto93F48446_ae) || (auto93F48446_ai < 0 && lv_iterator >= auto93F48446_ae) ) ; lv_iterator += auto93F48446_ai ) {
+        if ((libNtve_gf_UnitGroupIsDead(UnitControlGroup(1, lv_iterator)) == false)) {
+            lv_controlGroups[lv_filledControlGroupsCount] = UnitControlGroup(1, lv_iterator);
+            lv_filledControlGroups[lv_filledControlGroupsCount] = lv_iterator;
+            lv_filledControlGroupsCount += 1;
+        }
+
+    }
+    lv_swapGroups[0] = RandomInt(0, lv_filledControlGroupsCount);
+    lv_swapGroups[1] = RandomInt(0, lv_filledControlGroupsCount);
+    while ((lv_swapGroups[0] == lv_swapGroups[1])) {
+        lv_swapGroups[1] = RandomInt(0, lv_filledControlGroupsCount);
+    }
+    lv_controlGroups[0] = UnitControlGroup(1, lv_filledControlGroups[lv_swapGroups[0]]);
+    lv_controlGroups[1] = UnitControlGroup(1, lv_filledControlGroups[lv_swapGroups[1]]);
+    UnitControlGroupClear(1, lv_filledControlGroups[lv_swapGroups[0]]);
+    UnitControlGroupClear(1, lv_filledControlGroups[lv_swapGroups[1]]);
+    UnitControlGroupAddUnits(1, lv_filledControlGroups[lv_swapGroups[1]], lv_controlGroups[0]);
+    UnitControlGroupAddUnits(1, lv_filledControlGroups[lv_swapGroups[0]], lv_controlGroups[1]);
     return true;
 }
 
@@ -208,15 +759,53 @@ bool lib1F9A7589_gt_SpawnRaven_Func (bool testConds, bool runActions) {
         return true;
     }
 
-    libNtve_gf_CreateUnitsWithDefaultFacing(1, "Raven", 0, 2, CameraGetTarget(1));
+    if ((lib1F9A7589_gv_showDebugChats == true)) {
+        UIDisplayMessage(PlayerGroupAll(), c_messageAreaChat, StringExternal("Param/Value/lib_1F9A7589_DE65FB6F"));
+    }
+
+    libNtve_gf_CreateUnitsWithDefaultFacing(1, "Raven", 0, lib1F9A7589_gv_hostilePlayer, lib1F9A7589_gv_spawnPoint);
     UnitSetPropertyFixed(UnitLastCreated(), c_unitPropEnergyMax, 0.0);
     UnitSetPropertyFixed(UnitLastCreated(), c_unitPropEnergy, 0.0);
+    if ((lib1F9A7589_gv_attackwaves == true)) {
+        AISetGroupScriptControlled(UnitLastCreatedGroup(), false);
+        AIAttackWaveUseGroup(lib1F9A7589_gv_hostilePlayer, UnitLastCreatedGroup());
+    }
+    else {
+        UnitGroupIssueOrder(UnitLastCreatedGroup(), OrderTargetingUnit(AbilityCommand("attack", 0), lib1F9A7589_gv_attackTarget), c_orderQueueReplace);
+    }
     return true;
 }
 
 //--------------------------------------------------------------------------------------------------
 void lib1F9A7589_gt_SpawnRaven_Init () {
     lib1F9A7589_gt_SpawnRaven = TriggerCreate("lib1F9A7589_gt_SpawnRaven_Func");
+}
+
+//--------------------------------------------------------------------------------------------------
+// Trigger: Spawn Death Bunker
+//--------------------------------------------------------------------------------------------------
+bool lib1F9A7589_gt_SpawnDeathBunker_Func (bool testConds, bool runActions) {
+    // Automatic Variable Declarations
+    // Actions
+    if (!runActions) {
+        return true;
+    }
+
+    if ((lib1F9A7589_gv_showDebugChats == true)) {
+        UIDisplayMessage(PlayerGroupAll(), c_messageAreaChat, StringExternal("Param/Value/lib_1F9A7589_BCE6BD78"));
+    }
+
+    libNtve_gf_CreateUnitsWithDefaultFacing(1, "Bunker", 0, lib1F9A7589_gv_hostilePlayer, CameraGetTarget(1));
+    UnitCargoCreate(UnitLastCreated(), "Marine", 4);
+    libNtve_gf_CreateUnitsWithDefaultFacing(1, "Hellion", 0, lib1F9A7589_gv_hostilePlayer, PointWithOffset(CameraGetTarget(1), 1.0, 0.0));
+    libNtve_gf_CreateUnitsWithDefaultFacing(1, "Hellion", 0, lib1F9A7589_gv_hostilePlayer, PointWithOffset(CameraGetTarget(1), -0.5, 1.0));
+    libNtve_gf_CreateUnitsWithDefaultFacing(1, "Hellion", 0, lib1F9A7589_gv_hostilePlayer, PointWithOffset(CameraGetTarget(1), -0.5, -1.0));
+    return true;
+}
+
+//--------------------------------------------------------------------------------------------------
+void lib1F9A7589_gt_SpawnDeathBunker_Init () {
+    lib1F9A7589_gt_SpawnDeathBunker = TriggerCreate("lib1F9A7589_gt_SpawnDeathBunker_Func");
 }
 
 //--------------------------------------------------------------------------------------------------
@@ -229,8 +818,11 @@ bool lib1F9A7589_gt_Taxed_Func (bool testConds, bool runActions) {
         return true;
     }
 
-    PlayerModifyPropertyInt(1, c_playerPropMinerals, c_playerPropOperSubtract, 500);
-    PlayerModifyPropertyInt(1, c_playerPropVespene, c_playerPropOperSubtract, 500);
+    if ((lib1F9A7589_gv_showDebugChats == true)) {
+        UIDisplayMessage(PlayerGroupAll(), c_messageAreaChat, StringExternal("Param/Value/lib_1F9A7589_0312ECD0"));
+    }
+
+    PlayerModifyPropertyInt(1, c_playerPropMinerals, c_playerPropOperSubtract, libNtve_gf_ArithmeticIntClamp(PlayerGetPropertyInt(1, c_playerPropMinerals), 1, 500));
     return true;
 }
 
@@ -249,7 +841,11 @@ bool lib1F9A7589_gt_MooSpawn_Func (bool testConds, bool runActions) {
         return true;
     }
 
-    libNtve_gf_CreateUnitsWithDefaultFacing(1, "Cow", 0, 0, CameraGetTarget(1));
+    if ((lib1F9A7589_gv_showDebugChats == true)) {
+        UIDisplayMessage(PlayerGroupAll(), c_messageAreaChat, StringExternal("Param/Value/lib_1F9A7589_461B3CBE"));
+    }
+
+    libNtve_gf_CreateUnitsWithDefaultFacing(5, "Cow", 0, 0, CameraGetTarget(1));
     return true;
 }
 
@@ -263,12 +859,56 @@ void lib1F9A7589_gt_MooSpawn_Init () {
 //--------------------------------------------------------------------------------------------------
 bool lib1F9A7589_gt_ActivateHunt_Func (bool testConds, bool runActions) {
     // Automatic Variable Declarations
+    unitgroup auto8AF377F0_g;
+    int auto8AF377F0_u;
+    unit auto8AF377F0_var;
+    unitgroup auto7B9A087B_g;
+    int auto7B9A087B_u;
+    unit auto7B9A087B_var;
+    int autoB1986369_val;
+
     // Actions
     if (!runActions) {
         return true;
     }
 
+    if ((lib1F9A7589_gv_showDebugChats == true)) {
+        UIDisplayMessage(PlayerGroupAll(), c_messageAreaChat, StringExternal("Param/Value/lib_1F9A7589_23F06EBB"));
+    }
+
     lib1F9A7589_gv_huntActive = true;
+    lib1F9A7589_gv_totalenemyunits = UnitCountAlliance(1, c_unitAllianceEnemy, RegionEntireMap(), UnitFilter(0, 0, (1 << c_targetFilterStructure) | (1 << c_targetFilterMissile), (1 << (c_targetFilterDead - 32)) | (1 << (c_targetFilterHidden - 32))), 0);
+    auto8AF377F0_g = libNtve_gf_UnitsInRegionWithAllianceToPlayerMatchingCondition(null, "", "", 1, c_unitAllianceEnemy, RegionPlayableMap(), UnitFilter((1 << c_targetFilterStructure), 0, (1 << c_targetFilterMissile), (1 << (c_targetFilterDead - 32)) | (1 << (c_targetFilterHidden - 32))), 0);
+    auto8AF377F0_u = UnitGroupCount(auto8AF377F0_g, c_unitCountAll);
+    for (;; auto8AF377F0_u -= 1) {
+        auto8AF377F0_var = UnitGroupUnitFromEnd(auto8AF377F0_g, auto8AF377F0_u);
+        if (auto8AF377F0_var == null) { break; }
+        UnitGroupAdd(lib1F9A7589_gv_huntInvulnUnits, auto8AF377F0_var);
+        UnitBehaviorAdd(auto8AF377F0_var, "Invulnerable", auto8AF377F0_var, 1);
+        Wait(0.05, c_timeGame);
+    }
+    auto7B9A087B_g = libNtve_gf_UnitsInRegionWithAllianceToPlayerMatchingCondition(null, "", "", 1, c_unitAllianceEnemy, RegionPlayableMap(), UnitFilter(0, 0, (1 << c_targetFilterStructure) | (1 << c_targetFilterMissile), (1 << (c_targetFilterDead - 32)) | (1 << (c_targetFilterHidden - 32))), 0);
+    auto7B9A087B_u = UnitGroupCount(auto7B9A087B_g, c_unitCountAll);
+    for (;; auto7B9A087B_u -= 1) {
+        auto7B9A087B_var = UnitGroupUnitFromEnd(auto7B9A087B_g, auto7B9A087B_u);
+        if (auto7B9A087B_var == null) { break; }
+        UnitGroupAdd(lib1F9A7589_gv_huntInvulnUnits, auto7B9A087B_var);
+        if ((lib1F9A7589_gv_huntUnit == null)) {
+            autoB1986369_val = RandomInt(1, lib1F9A7589_gv_totalenemyunits);
+            if (autoB1986369_val == 1) {
+                lib1F9A7589_gv_huntUnit = auto7B9A087B_var;
+            }
+            else {
+                lib1F9A7589_gv_totalenemyunits -= 1;
+            }
+        }
+
+        if ((auto7B9A087B_var != lib1F9A7589_gv_huntUnit)) {
+            UnitBehaviorAdd(auto7B9A087B_var, "Invulnerable", auto7B9A087B_var, 1);
+            Wait(0.05, c_timeGame);
+        }
+
+    }
     return true;
 }
 
@@ -282,12 +922,23 @@ void lib1F9A7589_gt_ActivateHunt_Init () {
 //--------------------------------------------------------------------------------------------------
 bool lib1F9A7589_gt_HuntFinished_Func (bool testConds, bool runActions) {
     // Automatic Variable Declarations
+    unitgroup autoA11F0497_g;
+    int autoA11F0497_u;
+    unit autoA11F0497_var;
+
     // Actions
     if (!runActions) {
         return true;
     }
 
     lib1F9A7589_gv_huntActive = false;
+    autoA11F0497_g = lib1F9A7589_gv_huntInvulnUnits;
+    autoA11F0497_u = UnitGroupCount(autoA11F0497_g, c_unitCountAll);
+    for (;; autoA11F0497_u -= 1) {
+        autoA11F0497_var = UnitGroupUnitFromEnd(autoA11F0497_g, autoA11F0497_u);
+        if (autoA11F0497_var == null) { break; }
+        UnitBehaviorRemove(autoA11F0497_var, "Invulnerable", 1);
+    }
     return true;
 }
 
@@ -302,6 +953,10 @@ void lib1F9A7589_gt_HuntFinished_Init () {
 //--------------------------------------------------------------------------------------------------
 bool lib1F9A7589_gt_RemoveHuntInvulnonattackwave_Func (bool testConds, bool runActions) {
     // Automatic Variable Declarations
+    unitgroup auto3F6B54A1_g;
+    int auto3F6B54A1_u;
+    unit auto3F6B54A1_var;
+
     // Conditions
     if (testConds) {
         if (!((lib1F9A7589_gv_huntActive == true))) {
@@ -309,6 +964,18 @@ bool lib1F9A7589_gt_RemoveHuntInvulnonattackwave_Func (bool testConds, bool runA
         }
     }
 
+    // Actions
+    if (!runActions) {
+        return true;
+    }
+
+    auto3F6B54A1_g = AIWaveGetUnits(WaveLastCreated());
+    auto3F6B54A1_u = UnitGroupCount(auto3F6B54A1_g, c_unitCountAll);
+    for (;; auto3F6B54A1_u -= 1) {
+        auto3F6B54A1_var = UnitGroupUnitFromEnd(auto3F6B54A1_g, auto3F6B54A1_u);
+        if (auto3F6B54A1_var == null) { break; }
+        UnitBehaviorRemove(auto3F6B54A1_var, "Invulnerable", 1);
+    }
     return true;
 }
 
@@ -319,10 +986,26 @@ void lib1F9A7589_gt_RemoveHuntInvulnonattackwave_Init () {
 }
 
 void lib1F9A7589_InitTriggers () {
+    lib1F9A7589_gt_DebugInfo_Init();
+    lib1F9A7589_gt_RandomTesting_Init();
+    lib1F9A7589_gt_TestColossus_Init();
+    lib1F9A7589_gt_TestNaga_Init();
+    lib1F9A7589_gt_TestMagic_Init();
+    lib1F9A7589_gt_TestGremlin_Init();
+    lib1F9A7589_gt_TestRaven_Init();
+    lib1F9A7589_gt_TestDeath_Init();
+    lib1F9A7589_gt_TestTaxes_Init();
+    lib1F9A7589_gt_TestMoo_Init();
+    lib1F9A7589_gt_TestHunt_Init();
     lib1F9A7589_gt_Clock_Init();
+    lib1F9A7589_gt_TestClock_Init();
     lib1F9A7589_gt_OpenBanks_Init();
+    lib1F9A7589_gt_SpawnColossus_Init();
+    lib1F9A7589_gt_SpawnNaga_Init();
+    lib1F9A7589_gt_SpawnMagic_Init();
     lib1F9A7589_gt_HotkeyGremlin_Init();
     lib1F9A7589_gt_SpawnRaven_Init();
+    lib1F9A7589_gt_SpawnDeathBunker_Init();
     lib1F9A7589_gt_Taxed_Init();
     lib1F9A7589_gt_MooSpawn_Init();
     lib1F9A7589_gt_ActivateHunt_Init();

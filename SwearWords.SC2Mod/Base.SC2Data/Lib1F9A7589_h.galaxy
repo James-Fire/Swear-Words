@@ -4,21 +4,48 @@ include "TriggerLibs/natives"
 // Library: Swear Words
 //--------------------------------------------------------------------------------------------------
 // Variable Declarations
+bool lib1F9A7589_gv_showDebugChats;
+bool lib1F9A7589_gv_swearTest;
 int lib1F9A7589_gv_achievementPosition;
 int lib1F9A7589_gv_achievementsDisplayed;
 bank lib1F9A7589_gv_eventBank;
+string lib1F9A7589_gv_eventString;
+int lib1F9A7589_gv_eventIncrement;
+int lib1F9A7589_gv_eventAppliedIncrement;
+point lib1F9A7589_gv_spawnPoint;
+bool lib1F9A7589_gv_attackwaves;
+int lib1F9A7589_gv_hostilePlayer;
+unit lib1F9A7589_gv_attackTarget;
 bool lib1F9A7589_gv_huntActive;
 unit lib1F9A7589_gv_huntUnit;
+int lib1F9A7589_gv_totalenemyunits;
+unitgroup lib1F9A7589_gv_huntInvulnUnits;
 
 // Function Declarations
 string lib1F9A7589_gf_GetRelevantUIData ();
 void lib1F9A7589_gf_AchievementToast (string lp_eventData);
 
 // Trigger Declarations
+trigger lib1F9A7589_gt_DebugInfo;
+trigger lib1F9A7589_gt_RandomTesting;
+trigger lib1F9A7589_gt_TestColossus;
+trigger lib1F9A7589_gt_TestNaga;
+trigger lib1F9A7589_gt_TestMagic;
+trigger lib1F9A7589_gt_TestGremlin;
+trigger lib1F9A7589_gt_TestRaven;
+trigger lib1F9A7589_gt_TestDeath;
+trigger lib1F9A7589_gt_TestTaxes;
+trigger lib1F9A7589_gt_TestMoo;
+trigger lib1F9A7589_gt_TestHunt;
 trigger lib1F9A7589_gt_Clock;
+trigger lib1F9A7589_gt_TestClock;
 trigger lib1F9A7589_gt_OpenBanks;
+trigger lib1F9A7589_gt_SpawnColossus;
+trigger lib1F9A7589_gt_SpawnNaga;
+trigger lib1F9A7589_gt_SpawnMagic;
 trigger lib1F9A7589_gt_HotkeyGremlin;
 trigger lib1F9A7589_gt_SpawnRaven;
+trigger lib1F9A7589_gt_SpawnDeathBunker;
 trigger lib1F9A7589_gt_Taxed;
 trigger lib1F9A7589_gt_MooSpawn;
 trigger lib1F9A7589_gt_ActivateHunt;

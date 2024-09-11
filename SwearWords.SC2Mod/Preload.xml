@@ -1,6 +1,12 @@
 <?xml version="1.0" encoding="utf-8"?>
 <Preload>
 <Actor id="SYSTEM_ActorConfig"/>
+<Behavior id="Invulnerable"/>
+<Unit id="Colossus"/>
+<Unit id="Bunker"/>
+<Unit id="Marine"/>
+<Unit id="Hellion"/>
 <Unit id="Raven"/>
+<Unit id="HighTemplar"/>
 <Unit id="Cow"/>
 </Preload>

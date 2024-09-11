@@ -1,3 +1,20 @@
+[Game]
+id=Dflt
+Abil=LoadOutSpray,stop
+Actor=CommandUIHarnessAttackProtoss,CommandUIHarnessAttackTerran,CommandUIHarnessAttackZerg,CommandUIHarnessConfirmProtoss,CommandUIHarnessConfirmTerran,CommandUIHarnessConfirmZerg,CommandUIHarnessMoveProtoss,CommandUIHarnessMoveTerran,CommandUIHarnessMoveZerg,CommandUIHarnessRallyProtoss,CommandUIHarnessRallyTerran,CommandUIHarnessRallyZerg,TerrainMgr
+Behavior=AttackReveal
+Button=LoadOutSpray@1,LoadOutSpray@10,LoadOutSpray@11,LoadOutSpray@12,LoadOutSpray@13,LoadOutSpray@14,LoadOutSpray@2,LoadOutSpray@3,LoadOutSpray@4,LoadOutSpray@5,LoadOutSpray@6,LoadOutSpray@7,LoadOutSpray@8,LoadOutSpray@9
+Effect=SplashDamage
+Race=Prot,Terr,Zerg
+Sound=Zerg_CreepDecay,Zerg_CreepGrow
+
+[Unit]
+id=Cow
+Abil=HerdInteract,move,stop
+Actor=BlipVisual,CommandUIHarnessAttackProtoss,CommandUIHarnessAttackTerran,CommandUIHarnessAttackZerg,CommandUIHarnessConfirmProtoss,CommandUIHarnessConfirmTerran,CommandUIHarnessConfirmZerg,CommandUIHarnessMoveProtoss,CommandUIHarnessMoveTerran,CommandUIHarnessMoveZerg,CommandUIHarnessRallyProtoss,CommandUIHarnessRallyTerran,CommandUIHarnessRallyZerg,ConfirmationLocalAirAttack,ConfirmationLocalGroundAttack,ConfirmationSyncAirAttack,ConfirmationSyncGroundAttack,ConstructionRefundTextAlly,ConstructionRefundTextEnemy,##id##,FlyerShadow,GroundShadow,SalvagedTextAlly,SalvagedTextEnemy,ShieldImpact,TerrainMgr,UnitPointsTextAll
+Behavior=CritterExplode
+Button=Attack,Move,MoveHoldPosition,MovePatrol,Stop
+
 [User]
 id=EventTypeData
 path=Assets\Textures\.dds
@@ -7,4 +24,5 @@ id=EventsUIData
 path=Assets\Textures\.dds
 asset=abilityicon_spawnbroodlings_square,barrier_coop,btn-ability-kerrigan-heroicfortitude,btn-ability-kerrigan-malignantcreep,btn-ability-kerrigan-vespeneefficiency,btn-ability-mengsk-marauder-royalstimpack,btn-ability-mengsk-thor-bigboycover,btn-ability-spearofadun-chronosurge,btn-ability-spearofadun-solarbombardment,btn-ability-terran-stimpack-color,btn-doodad-minerals,btn-hero-kerriganghost,btn-hero-kerriganqueenofblades,btn-solar-solarite,btn-tips-cantina,btn-tips-counter,btn-tips-rocks,btn-tips-starmap,btn-unit-terran-battlecruiserloki,btn-unit-terran-tychusherc-holo,btn-unit-zerg-baneling-hunter,btn-unit-zerg-broodlord,btn-unit-zerg-impaler,btn-unit-zerg-lurker,btn-unit-zerg-roach-corpser,btn-unit-zerg-roach-vile,btn-unit-zerg-splitterling,btn-unit-zerg-swarmhost-carrion,btn-unit-zerg-swarmhost-creeper,btn-unit-zerg-ultralisk-noxious,btn-unit-zerg-ultralisk-torrasque,btn-unit-zerg-viper,btn-unit-zerg-zergling-raptor,btn-unit-zerg-zergling-swarmling,btn-upgrade-protoss-structureovercharge,longrange_coop,microtransactions_coop,naptime_coop,sc2_ui_glues_icons_lockedwarning,shortsighted_coop,talent-zagara-level04-scourgeresearchbundle,timewarp_coop,tip_hybridbehemoth,tip_kerriganascended,tip_rakshir,ui_hots_icon_shared_questionmark,wireframe-critter-cow
 Actor=CommandUIHarnessAttackProtoss,CommandUIHarnessAttackTerran,CommandUIHarnessAttackZerg,CommandUIHarnessConfirmProtoss,CommandUIHarnessConfirmTerran,CommandUIHarnessConfirmZerg,CommandUIHarnessMoveProtoss,CommandUIHarnessMoveTerran,CommandUIHarnessMoveZerg,CommandUIHarnessRallyProtoss,CommandUIHarnessRallyTerran,CommandUIHarnessRallyZerg,TerrainMgr
+User=EventTypeData
 

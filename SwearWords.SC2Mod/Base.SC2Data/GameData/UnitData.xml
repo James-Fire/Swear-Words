@@ -1,0 +1,7 @@
+<?xml version="1.0" encoding="utf-8"?>
+<Catalog>
+    <CUnit id="Cow">
+        <FlagArray index="Unselectable" value="0"/>
+        <FlagArray index="Untargetable" value="0"/>
+    </CUnit>
+</Catalog>
