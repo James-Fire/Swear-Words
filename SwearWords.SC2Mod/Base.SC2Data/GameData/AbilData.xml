@@ -1,0 +1,10 @@
+<?xml version="1.0" encoding="utf-8"?>
+<Catalog>
+    <CAbilAttack id="War3Attack">
+        <TargetMessage value="Abil/TargetMessage/attack"/>
+        <SmartFilters value="-;Player,Ally,Robotic"/>
+        <SupportedFilters value="-;Self,Robotic,Outer"/>
+        <MinAttackSpeedMultiplier value="0.25"/>
+        <MaxAttackSpeedMultiplier value="4"/>
+    </CAbilAttack>
+</Catalog>

@@ -1,0 +1,127 @@
+<?xml version="1.0" encoding="utf-8"?>
+<Catalog>
+    <CModel id="Nagaroyalguard">
+        <Model value="Assets\Units\Naga\War3_NagaRoyalGuard\War3_NagaRoyalGuard.m3"/>
+        <AnimBlendTime value="-1.000000"/>
+        <AnimSpeed value="1.000000"/>
+        <Events>
+            <Anim value="Death"/>
+            <Type value="Sound"/>
+            <Time value="0.034000"/>
+            <Payload value="SND_DMYR"/>
+        </Events>
+        <Events>
+            <Anim value="Death,Swim"/>
+            <Type value="Sound"/>
+            <Time value="0.034000"/>
+            <Payload value="SND_DMYS"/>
+        </Events>
+        <Flags index="Download" value="1"/>
+        <Flags index="ForcePortraitModel" value="1"/>
+        <Flags index="FOW" value="1"/>
+        <Flags index="VariationFallback" value="1"/>
+        <Flags index="VariationPreload" value="1"/>
+        <Flags index="Wait" value="1"/>
+        <Lighting value="Nagaroyalguard"/>
+        <OccludingOpacity value="0.350000"/>
+        <PlanetPanelCamera value="Star2Camera01"/>
+        <Priority value="32"/>
+        <Radius value="1.000000"/>
+        <Quality value="1"/>
+        <ScaleMax value="2.000000,2.000000,2.000000"/>
+        <ScaleMin value="2.000000,2.000000,2.000000"/>
+        <SelectionRadius value="0.562500"/>
+        <ShadowRadius value="0.500000"/>
+        <SquibTypeDefault value="Flesh"/>
+        <TechPurchaseCamera value="Star2Camera01"/>
+        <TechPurchaseSpeed value="0.100000"/>
+        <UnitGlossaryCamera value="Star2Camera01"/>
+    </CModel>
+    <CModel id="NagaroyalguardPortrait" Prefix="Portraits\" Race="Neutral">
+        <Model value="Assets\Units\Naga\War3_NagaRoyalGuard_Portrait\War3_NagaRoyalGuard_Portrait.m3"/>
+        <AnimBlendTime value="0.500000"/>
+        <AnimSpeed value="1.000000"/>
+        <EditorCategories value="Race:Neutral"/>
+        <Flags index="ForcePortraitModel" value="1"/>
+        <Flags index="IgnoreAspectRatioScale" value="1"/>
+        <Flags index="VariationFallback" value="1"/>
+        <Flags index="VariationPreload" value="1"/>
+        <Flags index="Wait" value="1"/>
+        <Image value="Assets\Textures\NagaroyalguardPortrait_Static.dds"/>
+        <Lighting value="Char"/>
+        <OccludingOpacity value="0.350000"/>
+        <PausedParticleSystemBehavior value="FreezeAll"/>
+        <PlanetPanelCamera value="Star2Camera01"/>
+        <Priority value="8"/>
+        <Radius value="0.500000"/>
+        <ScaleMax value="1.000000,1.000000,1.000000"/>
+        <ScaleMin value="1.000000,1.000000,1.000000"/>
+        <SelectionRadius value="0.500000"/>
+        <ShadowRadius value="0.500000"/>
+        <TechPurchaseCamera value="Star2Camera01"/>
+        <TechPurchaseSpeed value="0.100000"/>
+        <UnitGlossaryCamera value="Star2Camera01"/>
+    </CModel>
+    <CModel id="Nagaroyalguardmorph">
+        <Model value="Assets\Units\Naga\War3_NagaRoyalGuard\War3_NagaRoyalGuard.m3"/>
+        <AnimBlendTime value="-1.000000"/>
+        <AnimSpeed value="1.000000"/>
+        <Events>
+            <Anim value="Death"/>
+            <Type value="Sound"/>
+            <Time value="0.034000"/>
+            <Payload value="SND_DMYR"/>
+        </Events>
+        <Events>
+            <Anim value="Death,Swim"/>
+            <Type value="Sound"/>
+            <Time value="0.034000"/>
+            <Payload value="SND_DMYS"/>
+        </Events>
+        <Flags index="Download" value="1"/>
+        <Flags index="ForcePortraitModel" value="1"/>
+        <Flags index="FOW" value="1"/>
+        <Flags index="VariationFallback" value="1"/>
+        <Flags index="VariationPreload" value="1"/>
+        <Flags index="Wait" value="1"/>
+        <Lighting value="Nagaroyalguardmorph"/>
+        <OccludingOpacity value="0.350000"/>
+        <PlanetPanelCamera value="Star2Camera01"/>
+        <Priority value="32"/>
+        <Radius value="1.000000"/>
+        <Quality value="1"/>
+        <ScaleMax value="2.000000,2.000000,2.000000"/>
+        <ScaleMin value="2.000000,2.000000,2.000000"/>
+        <SelectionRadius value="0.562500"/>
+        <ShadowRadius value="0.500000"/>
+        <SquibTypeDefault value="Flesh"/>
+        <TechPurchaseCamera value="Star2Camera01"/>
+        <TechPurchaseSpeed value="0.100000"/>
+        <UnitGlossaryCamera value="Star2Camera01"/>
+    </CModel>
+    <CModel id="NagaroyalguardmorphPortrait" Prefix="Portraits\" Race="Neutral">
+        <Model value="Assets\Units\Naga\War3_NagaRoyalGuard_Portrait\War3_NagaRoyalGuard_Portrait.m3"/>
+        <AnimBlendTime value="0.500000"/>
+        <AnimSpeed value="1.000000"/>
+        <EditorCategories value="Race:Neutral"/>
+        <Flags index="ForcePortraitModel" value="1"/>
+        <Flags index="IgnoreAspectRatioScale" value="1"/>
+        <Flags index="VariationFallback" value="1"/>
+        <Flags index="VariationPreload" value="1"/>
+        <Flags index="Wait" value="1"/>
+        <Image value="Assets\Textures\NagaroyalguardmorphPortrait_Static.dds"/>
+        <Lighting value="Char"/>
+        <OccludingOpacity value="0.350000"/>
+        <PausedParticleSystemBehavior value="FreezeAll"/>
+        <PlanetPanelCamera value="Star2Camera01"/>
+        <Priority value="8"/>
+        <Radius value="0.500000"/>
+        <ScaleMax value="1.000000,1.000000,1.000000"/>
+        <ScaleMin value="1.000000,1.000000,1.000000"/>
+        <SelectionRadius value="0.500000"/>
+        <ShadowRadius value="0.500000"/>
+        <TechPurchaseCamera value="Star2Camera01"/>
+        <TechPurchaseSpeed value="0.100000"/>
+        <UnitGlossaryCamera value="Star2Camera01"/>
+    </CModel>
+</Catalog>

@@ -1,0 +1,23 @@
+<?xml version="1.0" encoding="utf-8"?>
+<Catalog>
+    <CFootprint id="Footprint4x4ContourDestructibleRock2">
+        <Layers index="Check" Area="-2,-2,2,2">
+            <Rows value="...."/>
+            <Rows value="...."/>
+            <Rows value="...."/>
+            <Rows value="...."/>
+        </Layers>
+        <Layers index="Place" Area="-2,-2,2,2">
+            <Rows value=".xx."/>
+            <Rows value="xxxx"/>
+            <Rows value="xxxx"/>
+            <Rows value=".xx."/>
+        </Layers>
+        <Shape>
+            <Mode value="Overlay"/>
+            <Radius value="2.236"/>
+            <Offsets value="-1,-2;1,-2;-1,2;1,2;-2,-1;-2,1;2,-1;2,1"/>
+            <Borders value="0,4,2;1,0,2;2,3,2;3,7,2;4,5,2;5,2,2;6,1,2;7,6,2"/>
+        </Shape>
+    </CFootprint>
+</Catalog>

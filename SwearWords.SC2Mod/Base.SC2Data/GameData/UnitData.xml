@@ -4,4 +4,141 @@
         <FlagArray index="Unselectable" value="0"/>
         <FlagArray index="Untargetable" value="0"/>
     </CUnit>
+    <CUnit id="DestructibleRock4x42">
+        <DeathRevealRadius value="3"/>
+        <FlagArray index="CreateVisible" value="1"/>
+        <FlagArray index="Untooltipable" value="0"/>
+        <FlagArray index="UseLineOfSight" value="1"/>
+        <FlagArray index="Destructible" value="1"/>
+        <FlagArray index="NoPortraitTalk" value="1"/>
+        <FlagArray index="ArmorDisabledWhileConstructing" value="1"/>
+        <FogVisibility value="Snapshot"/>
+        <EditorFlags index="NeutralDefault" value="1"/>
+        <PlaneArray index="Ground" value="1"/>
+        <Collide index="Burrow" value="1"/>
+        <Collide index="Ground" value="1"/>
+        <Collide index="Structure" value="1"/>
+        <Collide index="RoachBurrow" value="1"/>
+        <Collide index="ForceField" value="1"/>
+        <Collide index="Small" value="1"/>
+        <Attributes index="Armored" value="1"/>
+        <Attributes index="Structure" value="1"/>
+        <LifeStart value="2000"/>
+        <LifeMax value="2000"/>
+        <LifeArmor value="3"/>
+        <LifeArmorName value="Unit/LifeArmorName/HardenedMaterial"/>
+        <Footprint value="Footprint4x4ContourDestructibleRock2"/>
+        <MinimapRadius value="2.5"/>
+        <EditorCategories value="ObjectType:Destructible,ObjectFamily:Melee"/>
+    </CUnit>
+    <CUnit id="Nagaroyalguard">
+        <Name value="Unit/Name/Nagaroyalguard"/>
+        <DeathTime value="120"/>
+        <DeathRevealFilters value="Visible;Player,Ally,Neutral,Missile,Dead,Hidden"/>
+        <DeathRevealRadius value="2"/>
+        <DeathRevealDuration value="4"/>
+        <DeathRevealType value="Snapshot"/>
+        <ReviveType value="Nagaroyalguard"/>
+        <Race value="naga"/>
+        <FlagArray index="Turnable" value="1"/>
+        <FlagArray index="Movable" value="1"/>
+        <FlagArray index="Unclickable" value="1"/>
+        <FlagArray index="Unhighlightable" value="1"/>
+        <FlagArray index="Untooltipable" value="1"/>
+        <FlagArray index="PreventDestroy" value="1"/>
+        <FlagArray index="UseLineOfSight" value="1"/>
+        <FlagArray index="KillCredit" value="1"/>
+        <FlagArray index="ShowResources" value="1"/>
+        <FlagArray index="ClearRallyOnTargetLost" value="1"/>
+        <FlagArray index="ArmySelect" value="1"/>
+        <FlagArray index="CameraFollow" value="1"/>
+        <ResourceState value="Unknown"/>
+        <ResourceType value="Unknown"/>
+        <EditorFlags index="BlockStructures" value="1"/>
+        <PlaneArray index="Ground" value="1"/>
+        <PushPriority value="10"/>
+        <Collide index="Ground" value="1"/>
+        <Collide index="Small" value="1"/>
+        <DefaultAcquireLevel value="Offensive"/>
+        <Response value="Acquire"/>
+        <Attributes index="Armored" value="1"/>
+        <ArmorType value="Unknown"/>
+        <LifeStart value="1350"/>
+        <LifeMax value="1350"/>
+        <LifeArmorFormula>
+            <NegativeArmorMultiplier value="0"/>
+            <NegativeDamageBase value="0.94"/>
+            <PositiveArmorMultiplier value="0"/>
+            <PositiveDamageRatio value="0.06"/>
+        </LifeArmorFormula>
+        <LifeArmorDisplayFlags index="CollapseBuffed" value="1"/>
+        <LifeRegenRate value="1"/>
+        <LifeArmorName value="Unit/LifeArmorName/War3HeavyArmor"/>
+        <LifeArmorTip value="Unit/LifeArmorTip/War3HeavyArmor"/>
+        <EnergyStart value="500"/>
+        <EnergyMax value="500"/>
+        <EnergyArmorFormula NegativeArmorMultiplier="0" PositiveArmorMultiplier="0"/>
+        <EnergyRegenRate value="1.25"/>
+        <ShieldArmorFormula NegativeArmorMultiplier="0" PositiveArmorMultiplier="0"/>
+        <Mover value="Ground"/>
+        <Speed value="3.1992"/>
+        <Acceleration value="1000"/>
+        <LateralAcceleration value="46.0625"/>
+        <StationaryTurningRate value="499.9218"/>
+        <TurningRate value="499.9218"/>
+        <Sight value="15"/>
+        <OccludeHeight value="0.75"/>
+        <CostCategory value="Army"/>
+        <CostResource index="Terrazine" value="300"/>
+        <CostResource index="Custom" value="100"/>
+        <PawnItemReduction value="1"/>
+        <AbilArray Link="stop"/>
+        <AbilArray Link="move"/>
+        <AbilArray Link="War3Attack"/>
+        <BehaviorArray Link="UnitLevel"/>
+        <BehaviorArray Link="UnitLevel"/>
+        <BehaviorArray Link="UnitLevel"/>
+        <BehaviorArray Link="UnitLevel"/>
+        <BehaviorArray Link="UnitLevel"/>
+        <BehaviorArray Link="UnitLevel"/>
+        <WeaponArray Link="NagaroyalguardWeapon1"/>
+        <CardLayouts>
+            <LayoutButtons Face="War3Move" Type="AbilCmd" AbilCmd="move,Move" Row="0" Column="0"/>
+            <LayoutButtons Face="War3Stop" Type="AbilCmd" AbilCmd="stop,Stop" Row="0" Column="1"/>
+            <LayoutButtons Face="War3MoveHoldPosition" Type="AbilCmd" AbilCmd="move,HoldPos" Row="0" Column="2"/>
+            <LayoutButtons Face="War3Attack" Type="AbilCmd" AbilCmd="War3Attack,Execute" Row="0" Column="3"/>
+            <LayoutButtons Face="War3MovePatrol" Type="AbilCmd" AbilCmd="move,Patrol" Row="1" Column="0"/>
+            <LayoutButtons Face="War3AcquireMove" Type="AbilCmd" AbilCmd="move,AcquireMove" Row="0" Column="3"/>
+        </CardLayouts>
+        <Radius value="1.5"/>
+        <SeparationRadius value="1.5"/>
+        <InnerRadius value="0.5"/>
+        <InnerRadiusSafetyMultiplier value="1"/>
+        <CargoSize value="1"/>
+        <SubgroupPriority value="10"/>
+        <MinimapRadius value="1.5"/>
+        <EditorCategories value="ObjectType:Unit,ObjectFamily:Campaign"/>
+        <TacticalAI value="Nagaroyalguard"/>
+        <TacticalAIFilters value="-;Player,Ally,Neutral"/>
+        <AIEvalFactor value="1"/>
+        <Mass value="0.4"/>
+        <LeaderAlias value="Nagaroyalguard"/>
+        <HotkeyAlias value="Nagaroyalguard"/>
+        <SelectAlias value="Nagaroyalguard"/>
+        <SubgroupAlias value="Nagaroyalguard"/>
+        <AIEvaluateAlias value="Nagaroyalguard"/>
+        <Fidget>
+            <DelayMax value="30"/>
+            <DelayMin value="10"/>
+            <DistanceMax value="4"/>
+            <DistanceMin value="1"/>
+            <TurnAngle value="90"/>
+            <TurningRate value="90"/>
+            <ChanceArray index="Idle" value="100"/>
+        </Fidget>
+        <ReviveInfoBase>
+            <Charge Link="Nagaroyalguard/Revive" Location="Unit"/>
+            <Cooldown Link="Nagaroyalguard/Revive" Location="Unit"/>
+        </ReviveInfoBase>
+    </CUnit>
 </Catalog>

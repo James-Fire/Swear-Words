@@ -1,0 +1,37 @@
+<?xml version="1.0" encoding="utf-8"?>
+<Catalog>
+    <CWeaponLegacy id="NagaroyalguardWeapon1">
+        <Name value="Weapon/Name/War3Chaos"/>
+        <EditorCategories value="Race:Neutral"/>
+        <InfoTooltipPriority value="1"/>
+        <Tip value="Weapon/Tip/War3Chaos"/>
+        <Options index="CanInitiateAttackOrder" value="1"/>
+        <Options index="OnlyFireWhileInAttackOrder" value="1"/>
+        <Options index="OnlyFireAtAttackOrderTarget" value="1"/>
+        <Options index="LinkedCooldown" value="1"/>
+        <Options index="RequireEnabledAttackAbil" value="1"/>
+        <Options index="NeverMiss" value="1"/>
+        <Icon value="Assets\Textures\war3_btncorrosivebreath.dds"/>
+        <DisplayEffect value="NagaroyalguardWeapon1Damage"/>
+        <DisplayName value="Weapon/Name/NagaroyalguardWeapon1"/>
+        <TargetFilters value="Ground,Visible;Robotic,Missile,Stasis,Dead,Hidden,Invulnerable"/>
+        <MinScanRange value="5"/>
+        <Range value="1.28"/>
+        <RangeSlop value="2.5"/>
+        <TeleportResetRange value="500"/>
+        <ArcSlop value="11.25"/>
+        <Marker Link="Weapon/NagaroyalguardWeapon1"/>
+        <Cost>
+            <Cooldown Link="Weapon/War3Weapon" Location="Unit"/>
+        </Cost>
+        <Period value="1.7"/>
+        <AttackType value="Unknown"/>
+        <DamagePoint value="0.36"/>
+        <Backswing value="0.64"/>
+        <Effect value="NagaroyalguardWeapon1Damage"/>
+        <LegacyOptions index="FaceTargetWhileInCooldown" value="1"/>
+        <RandomDelayMin value="-0.0625"/>
+        <RandomDelayMax value="0.125"/>
+        <UninterruptibleDuration value="32767.9997"/>
+    </CWeaponLegacy>
+</Catalog>

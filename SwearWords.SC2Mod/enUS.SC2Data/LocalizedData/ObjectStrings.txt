@@ -1,2 +1,11 @@
-﻿User/Name/EventTypeData=Event Type Data
+﻿Actor/Name/DestructibleRock4x42=Destructible Rock 4x4
+Behavior/EditorPrefix/ImmuneDamage=Swear -
+Behavior/Name/ImmuneDamage=Immune Damage
+Behavior/Name/Invulnerable2=Invulnerable Count Hits
+Effect/EditorPrefix/FullHeal2=
+Effect/EditorSuffix/FullHeal2=(Restore all)
+Footprint/EditorPrefix/Footprint4x4ContourDestructibleRock2=Swear -
+Footprint/Name/Footprint4x4ContourDestructibleRock2=Footprint 4x4 Contour Destructible Rock
+Unit/EditorSuffix/DestructibleRock4x42=- 4x4
+User/Name/EventTypeData=Event Type Data
 User/Name/EventsUIData=Events UI Data

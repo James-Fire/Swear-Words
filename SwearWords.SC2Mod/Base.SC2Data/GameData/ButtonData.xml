@@ -1,0 +1,134 @@
+<?xml version="1.0" encoding="utf-8"?>
+<Catalog>
+    <CButton id="War3AcquireMove">
+        <Name value="Button/Name/War3AcquireMove"/>
+        <Tooltip value="Button/Tooltip/War3AcquireMove"/>
+        <TooltipFlags index="ShowName" value="1"/>
+        <TooltipFlags index="ShowHotkey" value="1"/>
+        <TooltipFlags index="ShowLevel" value="1"/>
+        <TooltipFlags index="ShowResources" value="1"/>
+        <TooltipFlags index="ShowSupply" value="1"/>
+        <TooltipFlags index="ShowUsage" value="1"/>
+        <TooltipFlags index="ShowTime" value="1"/>
+        <TooltipFlags index="ShowCooldown" value="1"/>
+        <TooltipFlags index="ShowRequirements" value="1"/>
+        <TooltipFlags index="ShowAutocast" value="1"/>
+        <Icon value="Assets\Textures\war3_btnattack.dds"/>
+        <AlertName value="Button/Name/War3AcquireMove"/>
+        <AlertTooltip value="Button/Tooltip/War3AcquireMove"/>
+        <AlertIcon value="Assets\Textures\war3_btnattack.dds"/>
+        <Hotkey value="Button/Hotkey/Attack"/>
+        <EditorCategories value="human"/>
+        <HotkeyAlias value="Attack"/>
+        <UseHotkeyLabel value="1"/>
+    </CButton>
+    <CButton id="War3Attack">
+        <Name value="Button/Name/Attack"/>
+        <Tooltip value="Button/Tooltip/Attack"/>
+        <TooltipFlags index="ShowName" value="1"/>
+        <TooltipFlags index="ShowHotkey" value="1"/>
+        <TooltipFlags index="ShowLevel" value="1"/>
+        <TooltipFlags index="ShowResources" value="1"/>
+        <TooltipFlags index="ShowSupply" value="1"/>
+        <TooltipFlags index="ShowUsage" value="1"/>
+        <TooltipFlags index="ShowTime" value="1"/>
+        <TooltipFlags index="ShowCooldown" value="1"/>
+        <TooltipFlags index="ShowRequirements" value="1"/>
+        <TooltipFlags index="ShowAutocast" value="1"/>
+        <Icon value="Assets\Textures\war3_btnattack.dds"/>
+        <AlertName value="Button/Name/War3Attack"/>
+        <AlertTooltip value="Button/Tooltip/War3Attack"/>
+        <AlertIcon value="Assets\Textures\war3_btnattack.dds"/>
+        <Hotkey value="Button/Hotkey/Attack"/>
+        <HotkeyAlias value="Attack"/>
+        <UseHotkeyLabel value="1"/>
+    </CButton>
+    <CButton id="War3Move">
+        <Name value="Button/Name/War3Move"/>
+        <Tooltip value="Button/Tooltip/War3Move"/>
+        <TooltipFlags index="ShowName" value="1"/>
+        <TooltipFlags index="ShowHotkey" value="1"/>
+        <TooltipFlags index="ShowLevel" value="1"/>
+        <TooltipFlags index="ShowResources" value="1"/>
+        <TooltipFlags index="ShowSupply" value="1"/>
+        <TooltipFlags index="ShowUsage" value="1"/>
+        <TooltipFlags index="ShowTime" value="1"/>
+        <TooltipFlags index="ShowCooldown" value="1"/>
+        <TooltipFlags index="ShowRequirements" value="1"/>
+        <TooltipFlags index="ShowAutocast" value="1"/>
+        <Icon value="Assets\Textures\war3_btnmove.dds"/>
+        <AlertName value="Button/Name/War3Move"/>
+        <AlertTooltip value="Button/Tooltip/War3Move"/>
+        <AlertIcon value="Assets\Textures\war3_btnmove.dds"/>
+        <Hotkey value="Button/Hotkey/Move"/>
+        <EditorCategories value="human"/>
+        <HotkeyAlias value="Move"/>
+        <UseHotkeyLabel value="1"/>
+    </CButton>
+    <CButton id="War3MoveHoldPosition">
+        <Name value="Button/Name/War3HoldPos"/>
+        <Tooltip value="Button/Tooltip/War3HoldPos"/>
+        <TooltipFlags index="ShowName" value="1"/>
+        <TooltipFlags index="ShowHotkey" value="1"/>
+        <TooltipFlags index="ShowLevel" value="1"/>
+        <TooltipFlags index="ShowResources" value="1"/>
+        <TooltipFlags index="ShowSupply" value="1"/>
+        <TooltipFlags index="ShowUsage" value="1"/>
+        <TooltipFlags index="ShowTime" value="1"/>
+        <TooltipFlags index="ShowCooldown" value="1"/>
+        <TooltipFlags index="ShowRequirements" value="1"/>
+        <TooltipFlags index="ShowAutocast" value="1"/>
+        <Icon value="Assets\Textures\war3_btnholdposition.dds"/>
+        <AlertName value="Button/Name/War3MoveHoldPosition"/>
+        <AlertTooltip value="Button/Tooltip/War3MoveHoldPosition"/>
+        <AlertIcon value="Assets\Textures\war3_btnholdposition.dds"/>
+        <Hotkey value="Button/Hotkey/MoveHoldPosition"/>
+        <EditorCategories value="human"/>
+        <HotkeyAlias value="MoveHoldPosition"/>
+        <UseHotkeyLabel value="1"/>
+    </CButton>
+    <CButton id="War3MovePatrol">
+        <Name value="Button/Name/War3Patrol"/>
+        <Tooltip value="Button/Tooltip/War3Patrol"/>
+        <TooltipFlags index="ShowName" value="1"/>
+        <TooltipFlags index="ShowHotkey" value="1"/>
+        <TooltipFlags index="ShowLevel" value="1"/>
+        <TooltipFlags index="ShowResources" value="1"/>
+        <TooltipFlags index="ShowSupply" value="1"/>
+        <TooltipFlags index="ShowUsage" value="1"/>
+        <TooltipFlags index="ShowTime" value="1"/>
+        <TooltipFlags index="ShowCooldown" value="1"/>
+        <TooltipFlags index="ShowRequirements" value="1"/>
+        <TooltipFlags index="ShowAutocast" value="1"/>
+        <Icon value="Assets\Textures\war3_btnpatrol.dds"/>
+        <AlertName value="Button/Name/War3MovePatrol"/>
+        <AlertTooltip value="Button/Tooltip/War3MovePatrol"/>
+        <AlertIcon value="Assets\Textures\war3_btnpatrol.dds"/>
+        <Hotkey value="Button/Hotkey/MovePatrol"/>
+        <EditorCategories value="human"/>
+        <HotkeyAlias value="MovePatrol"/>
+        <UseHotkeyLabel value="1"/>
+    </CButton>
+    <CButton id="War3Stop">
+        <Name value="Button/Name/War3Stop"/>
+        <Tooltip value="Button/Tooltip/War3Stop"/>
+        <TooltipFlags index="ShowName" value="1"/>
+        <TooltipFlags index="ShowHotkey" value="1"/>
+        <TooltipFlags index="ShowLevel" value="1"/>
+        <TooltipFlags index="ShowResources" value="1"/>
+        <TooltipFlags index="ShowSupply" value="1"/>
+        <TooltipFlags index="ShowUsage" value="1"/>
+        <TooltipFlags index="ShowTime" value="1"/>
+        <TooltipFlags index="ShowCooldown" value="1"/>
+        <TooltipFlags index="ShowRequirements" value="1"/>
+        <TooltipFlags index="ShowAutocast" value="1"/>
+        <Icon value="Assets\Textures\war3_btnstop.dds"/>
+        <AlertName value="Button/Name/War3Stop"/>
+        <AlertTooltip value="Button/Tooltip/War3Stop"/>
+        <AlertIcon value="Assets\Textures\war3_btnstop.dds"/>
+        <Hotkey value="Button/Hotkey/Stop"/>
+        <EditorCategories value="human"/>
+        <HotkeyAlias value="Stop"/>
+        <UseHotkeyLabel value="1"/>
+    </CButton>
+</Catalog>

@@ -2,6 +2,8 @@
 <Preload>
 <Actor id="SYSTEM_ActorConfig"/>
 <Behavior id="Invulnerable"/>
+<Behavior id="ImmuneDamage"/>
+<Behavior id="PearInvuln"/>
 <Unit id="Colossus"/>
 <Unit id="Bunker"/>
 <Unit id="Marine"/>
@@ -9,4 +11,8 @@
 <Unit id="Raven"/>
 <Unit id="HighTemplar"/>
 <Unit id="Cow"/>
+<Unit id="TarsonisEngine"/>
+<Unit id="FreightCar"/>
+<Unit id="DestructibleRock4x42"/>
+<Unit id="Nagaroyalguard"/>
 </Preload>

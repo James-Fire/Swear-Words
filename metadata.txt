@@ -2,4 +2,4 @@ title=Swear Words
 desc=Makes bad things happen based on words
 author=James Fire
 campaign=NCO
-version=0.1
+version=0.39

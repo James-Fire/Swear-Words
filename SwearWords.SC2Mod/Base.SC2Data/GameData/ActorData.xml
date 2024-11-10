@@ -1,0 +1,659 @@
+<?xml version="1.0" encoding="utf-8"?>
+<Catalog>
+    <CActorUnit id="DestructibleRock4x42" parent="DestructibleUnitStandard" unitName="DestructibleRock4x42">
+        <Model value="DestructibleRock4x4"/>
+        <BuildModel value="DestructibleRock4x4"/>
+        <DeathArray index="Normal" ModelLink="DestructibleRock4x4"/>
+        <PlacementModel value="DestructibleRock4x4"/>
+        <BarWidth value="200"/>
+        <GroupIcon>
+            <Image value="Assets\Textures\Wireframe-General-Destructiblerocks-4x4.dds"/>
+        </GroupIcon>
+        <HighlightTooltip value="Unit/Name/DestructibleRock4x42HighlightTooltip"/>
+        <LifeArmorIcon value="Assets\Textures\btn-upgrade-terran-buildingarmor.dds"/>
+        <MinimapIcon value="Assets\Textures\ui_minimap_icon_destructibledebris.dds"/>
+        <UnitFlags index="ShowBlobShadow" value="0"/>
+        <Wireframe>
+            <Image value="Assets\Textures\Wireframe-General-Destructiblerocks-4x4.dds"/>
+        </Wireframe>
+    </CActorUnit>
+    <CActorUnit id="Nagaroyalguard" unitSound="Bogus" unitName="Nagaroyalguard">
+        <CopySource value="_Unit"/>
+        <Aliases value="_Unit"/>
+        <Aliases value="_Selectable"/>
+        <Macros value="DeadAnimationMacro"/>
+        <Flags index="RespondsToUnitPlayerChange" value="1"/>
+        <InheritType value="Continuous"/>
+        <Inherits index="BaseModelScale" value="0"/>
+        <Inherits index="CastShadows" value="0"/>
+        <Inherits index="CloakEffect" value="0"/>
+        <Inherits index="CreepEngulfment" value="0"/>
+        <Inherits index="Decal" value="0"/>
+        <Inherits index="LocalTintColor" value="0"/>
+        <Inherits index="ModelMaterials" value="0"/>
+        <Inherits index="Opacity" value="0"/>
+        <Inherits index="Scale" value="0"/>
+        <Inherits index="TeamColor" value="0"/>
+        <Inherits index="TimeScale" value="0"/>
+        <Inherits index="TintColor" value="0"/>
+        <Inherits index="Visibility" value="0"/>
+        <Inherits index="WarpGroup" value="0"/>
+        <AcceptedTransfers index="AnimProps" value="1"/>
+        <AcceptedTransfers index="Position" value="1"/>
+        <AcceptedTransfers index="Rotation" value="1"/>
+        <AcceptedTransfers index="Textures" value="1"/>
+        <AcceptedTransfers index="Status" value="1"/>
+        <AcceptedHostedPropTransfers index="BaseModelScale" value="0"/>
+        <FogVisibility value="Snapshot"/>
+        <EditorCategories value="DoodadType:NotDoodad"/>
+        <Remove Terms="AnimDone; AnimName Death" Send="AnimPlay Dead Dead PlayForever"/>
+        <Remove Terms="DeathModelInitializeDone" Send="SetTransferOverrideAnim Dead"/>
+        <Remove Terms="AnimDone.*.Missing; AnimName Dead" Send="Destroy"/>
+        <On Terms="UnitBirth.Nagaroyalguard" Send="Create SoundEmitter Nagaroyalguard_Ambience"/>
+        <On Terms="UnitBirth.Nagaroyalguard" Send="Create"/>
+        <On Terms="UnitRevive.Nagaroyalguard" Send="Create"/>
+        <On Terms="UnitRevive.Nagaroyalguard" Send="RefSet ::HostTurretBody _Selectable"/>
+        <On Terms="UnitConstruction.Nagaroyalguard.Start" Send="Create"/>
+        <On Terms="UnitConstruction.Nagaroyalguard.Finish" Send="AnimPlay ConstructionDeath Stand,Birth,Death FullMatch"/>
+        <On Terms="AnimDone.*.Missing; AnimName ConstructionDeath" Send="Destroy"/>
+        <On Terms="ActorCreation; ValidateUnit IsFlying; Option Shadow Low; $AllowBlobShadow" Send="Create FlyerShadow"/>
+        <On Terms="ActorCreation; ValidateUnit IsNotFlying; Option Shadow Low; $AllowBlobShadow" Send="Create GroundShadow"/>
+        <On Terms="StatusOn.*.PreTargetingModel" Send="Create ModelPretargetGround"/>
+        <On Terms="StatusOff.*.PreTargetingModel" Target="ModelPretargetGround" Send="Destroy"/>
+        <On Terms="StatusOn.*.PreTargetingModel; ValidateUnit IsFlying" Send="Create GroundPreSelection"/>
+        <On Terms="StatusOff.*.PreTargetingModel" Target="GroundPreSelection" Send="Destroy"/>
+        <On Terms="StatusIncrement.*.PreTargetingModel; IsStatus PreTargetingModel 2" Send="StatusSet PreTargetingModel 1"/>
+        <On Terms="PreTargetingUpdate.*.Start" Send="SetTintColorBlendPair 255,192,192 255,128,128 0.150000 Bounce Pretarget"/>
+        <On Terms="PreTargetingUpdate.*.Stop" Send="ClearTintColor 0.100000 Pretarget"/>
+        <On Terms="StatusOn.*.PreTargetingTint" Send="PreTargetingUpdate Start"/>
+        <On Terms="StatusOff.*.PreTargetingTint" Send="PreTargetingUpdate Stop"/>
+        <On Terms="StatusIncrement.*.PreTargetingTint; IsStatus PreTargetingTint 2" Send="StatusSet PreTargetingTint 1"/>
+        <On Terms="CursorUpdate.*.Start; ValidateUnit IsFlying" Send="StatusIncrement FlyerHelper"/>
+        <On Terms="CursorUpdate.*.Stop; ValidateUnit IsFlying; HasStatus FlyerHelper" Send="StatusDecrement FlyerHelper"/>
+        <On Terms="ActorCreation; ScopeContains GroundLocalSelection" Send="StatusSet Selected 1"/>
+        <On Terms="SelectionLocalUpdate.*.Start" Send="StatusSet Selected 1"/>
+        <On Terms="SelectionLocalUpdate.*.Stop" Send="StatusSet Selected 0"/>
+        <On Terms="StatusOn.*.Selected; ValidateUnit IsFlying" Send="StatusIncrement FlyerHelper"/>
+        <On Terms="StatusOff.*.Selected; ValidateUnit IsFlying; HasStatus FlyerHelper" Send="StatusDecrement FlyerHelper"/>
+        <On Terms="StatusOn.*.FlyerHelper; FlyerHelper All" Send="Create FlyerHelperSplat"/>
+        <On Terms="StatusOn.*.FlyerHelper; FlyerHelper Selected" Send="Create FlyerHelperSplat"/>
+        <On Terms="StatusOff.*.FlyerHelper; FlyerHelper Selected" Target="FlyerHelperSplat" Send="Destroy"/>
+        <On Terms="ActorCreation; FlyerHelper All; ValidateUnit IsFlying" Send="Create FlyerHelperSplat"/>
+        <On Terms="ActorDestruction; FlyerHelper All; !HasStatus FlyerHelper" Target="FlyerHelperSplat" Send="Destroy"/>
+        <On Terms="FlyerHelperChange; FlyerHelper None" Target="FlyerHelperSplat" Send="Destroy"/>
+        <On Terms="FlyerHelperChange; FlyerHelper Selected; HasStatus FlyerHelper; !ScopeContains FlyerHelperSplat" Send="Create FlyerHelperSplat"/>
+        <On Terms="FlyerHelperChange; FlyerHelper Selected; !HasStatus FlyerHelper" Target="FlyerHelperSplat" Send="Destroy"/>
+        <On Terms="FlyerHelperChange; FlyerHelper All; ValidateUnit IsFlying; !ScopeContains FlyerHelperSplat" Send="Create FlyerHelperSplat"/>
+        <On Terms="UnitBirth.*.Normal" Send="$Birth 0 0.000000"/>
+        <On Terms="UnitFidget" Send="AnimPlay Fidget Fidget"/>
+        <On Terms="UnitMovementUpdate.*.Walk" Send="AnimClear Fidget"/>
+        <On Terms="UnitDetectedByViewer.*.On; ValidateUnit IsHallucination" Target="_HallucinationTinter" Send="Signal HallucinationTintOn"/>
+        <On Terms="UnitDetectedByViewer.*.Off; ValidateUnit IsHallucination" Target="_HallucinationTinter" Send="Signal HallucinationTintOff"/>
+        <On Terms="UnitDeathCustomize; ValidateUnit NotStructure; IsStatus InAir 1" Send="DeathCustomize AntiGravGeneric"/>
+        <On Terms="UnitDeathCustomize; ValidateUnit IsProtossUnit; IsStatus InAir 1" Send="DeathCustomize AntiGravProtoss"/>
+        <On Terms="UnitDeathCustomize; ValidateUnit IsTerranUnit; IsStatus InAir 1" Send="DeathCustomize AntiGravTerran"/>
+        <On Terms="UnitDeathCustomize; ValidateUnit IsZergUnit; IsStatus InAir 1" Send="DeathCustomize AntiGravZerg"/>
+        <On Terms="UnitDeathCustomize; ValidateUnit IsVortexed" Send="DeathCustomize Vortex"/>
+        <On Terms="UnitDeathCustomize; ValidateUnit HasForceLowDeathProtoss" Send="DeathCustomize AntiGravProtoss"/>
+        <On Terms="UnitDeathCustomize; ValidateUnit HasForceLowDeathZerg" Send="DeathCustomize AntiGravZerg"/>
+        <On Terms="UnitDeathCustomize; ValidateUnit HasForceLowDeathTerran" Send="DeathCustomize AntiGravTerran"/>
+        <On Terms="Behavior.PhoenixAntiGrav.On" Send="ModelSuddenMotionStart"/>
+        <On Terms="Behavior.PhoenixAntiGrav.Off" Send="ModelSuddenMotionStop"/>
+        <On Terms="Behavior.ForceLowDeath.On" Send="DeathCustomsEnablePhysics 0"/>
+        <On Terms="UnitTaunt.*.Start; Taunt" Send="AnimPlay Cheer Stand,Victory"/>
+        <On Terms="UnitTaunt.*.Stop; Taunt" Send="AnimClear Cheer"/>
+        <On Terms="UnitTaunt.*.Start; Taunt Dance" Send="AnimPlay Dance Stand,Dance"/>
+        <On Terms="UnitTaunt.*.Stop; Taunt Dance" Send="AnimClear Dance"/>
+        <On Terms="UnitTaunt.*.Start; Taunt Tease" Send="AnimPlay Taunt Taunt"/>
+        <On Terms="UnitTaunt.*.Stop; Taunt Tease" Send="AnimClear Taunt"/>
+        <On Terms="ActorCreation" Send="StatusSet InAir 0"/>
+        <On Terms="UnitHeightUpdate.*.Lift" Send="StatusSet InAir 1"/>
+        <On Terms="UnitHeightUpdate.*.Land" Send="StatusSet InAir 0"/>
+        <On Terms="BuildCoachHover.*.On" Send="TimerKill DelayUnhighlight"/>
+        <On Terms="BuildCoachHover.*.On" Send="SetTintColor 0,255,0 0.100000"/>
+        <On Terms="BuildCoachHover.*.Off" Send="TimerSet 0.300000 DelayUnhighlight"/>
+        <On Terms="TimerExpired; TimerName DelayUnhighlight" Send="SetTintColor 255,255,255 0.500000"/>
+        <On Terms="Abil.attack.ReadyStart" Send="AnimGroupApply Ready"/>
+        <On Terms="WeaponStart.*.AttackStart" Send="AnimBracketStart Attack Attack"/>
+        <On Terms="WeaponStart.*.AttackStart; AnimPlaying Birth" Send="AnimClear Birth"/>
+        <On Terms="WeaponStop.*.AttackStop" Send="AnimBracketStop Attack"/>
+        <On Terms="Abil.attack.ReadyStop" Send="AnimGroupRemove Ready"/>
+        <On Terms="Abil.War3Attack.ReadyStart" Send="AnimGroupApply Ready"/>
+        <On Terms="Abil.War3Attack.ReadyStop" Send="AnimGroupRemove Ready"/>
+        <On Terms="Abil.War3AttackPlusTree.ReadyStart" Send="AnimGroupApply Ready"/>
+        <On Terms="Abil.War3AttackPlusTree.ReadyStop" Send="AnimGroupRemove Ready"/>
+        <On Terms="ModelEvent; ModelEventName Bone_Guts" Send="Create War3_Death_Bones_Explosion"/>
+        <On Terms="ActorCreation; ValidateUnit War3BurnableUnits" Send="Create BuildingFlame1"/>
+        <On Terms="ActorCreation; ValidateUnit War3BurnableUnits" Send="Create BuildingFlame2"/>
+        <On Terms="ActorCreation; ValidateUnit War3BurnableUnits" Send="Create BuildingFlame3"/>
+        <On Terms="UnitDeath" Send="$Death"/>
+        <On Terms="AnimDone; AnimName Death" Send="AnimPlay DeathB Decay,Flesh"/>
+        <On Terms="AnimDone; AnimName DeathB" Send="AnimPlay DeathC Decay,Bone"/>
+        <On Terms="AnimDone; AnimName DeathC" Send="Destroy"/>
+        <On Terms="UnitRevive.Nagaroyalguard; AnimPlaying Death" Send="Destroy"/>
+        <On Terms="UnitRevive.Nagaroyalguard; AnimPlaying DeathB" Send="Destroy"/>
+        <On Terms="UnitRevive.Nagaroyalguard; AnimPlaying DeathC" Send="Destroy"/>
+        <On Terms="UnitMovementUpdate.*.Walk" Target="_MorphModel" Send="AnimPlay Walk Walk PlayForever"/>
+        <On Terms="UnitMovementUpdate.*.Stand" Target="_MorphModel" Send="AnimClear Walk"/>
+        <On Terms="Behavior.BrilliantGemTargetRegen.On" Send="StatusIncrement GeneralAura"/>
+        <On Terms="Behavior.ChieftainEnduranceAuraATarget.On" Send="StatusIncrement GeneralAura"/>
+        <On Terms="Behavior.ChieftainEnduranceAuraBTarget.On" Send="StatusIncrement GeneralAura"/>
+        <On Terms="Behavior.ChieftainEnduranceAuraCTarget.On" Send="StatusIncrement GeneralAura"/>
+        <On Terms="Behavior.BrilliantGemTargetRegen.Off" Send="StatusDecrement GeneralAura"/>
+        <On Terms="Behavior.ChieftainEnduranceAuraATarget.Off" Send="StatusDecrement GeneralAura"/>
+        <On Terms="Behavior.ChieftainEnduranceAuraBTarget.Off" Send="StatusDecrement GeneralAura"/>
+        <On Terms="Behavior.ChieftainEnduranceAuraCTarget.Off" Send="StatusDecrement GeneralAura"/>
+        <On Terms="StatusOn.*.GeneralAura" Send="Create GeneralAuraTarget"/>
+        <On Terms="StatusOff.*.GeneralAura" Target="GeneralAuraTarget" Send="Destroy"/>
+        <AddToProximitySystem value="1"/>
+        <Model value="Nagaroyalguard"/>
+        <AnimBlendTime value="0.150000"/>
+        <ModelFlags index="AllowHitTest" value="1"/>
+        <ModelFlags index="AutomateGlobalLoops" value="1"/>
+        <ModelFlags index="NeedsVolumeMonitoring" value="1"/>
+        <ModelFlags index="UpdateVisibility" value="1"/>
+        <ModelFlags index="UseSyncSeed" value="1"/>
+        <EventDataFootprint Actor="UnitFootprint" Model="NagaroyalguardFootprint"/>
+        <EventDataSound Actor="UnitSound"/>
+        <ProximityPosition value="CenterModelBounds"/>
+        <Baselines index="Stand" AnimProps="Stand" BlendIn="-1.000000" BlendOut="-1.000000"/>
+        <Baselines index="Walk" AnimProps="Walk" BlendIn="-1.000000" BlendOut="-1.000000"/>
+        <BuildModel value="Nagaroyalguard"/>
+        <DeathArray index="Normal" AnimProps="Stand" ModelLink="Nagaroyalguard" VoiceLink="NagaroyalguardDeathVoice"/>
+        <DeathArray index="Eat" AnimProps="Stand"/>
+        <DeathArray index="Eviscerate" AnimProps="Stand"/>
+        <DeathArray index="Fire" AnimProps="Stand"/>
+        <DeathArray index="Silentkill" AnimProps="Stand"/>
+        <DeathArray index="Squish" AnimProps="Stand"/>
+        <DeathArray index="UnderConstruction" AnimProps="Stand"/>
+        <DeathCustoms ModelLink="ZergSmallUnitDeathLow" Name="AntiGravGeneric"/>
+        <DeathCustoms ModelLink="ProtossSmallUnitDeathLow" Name="AntiGravProtoss"/>
+        <DeathCustoms ModelLink="TerranSmallUnitDeathLow" Name="AntiGravTerran"/>
+        <DeathCustoms ModelLink="ZergSmallUnitDeathLow" Name="AntiGravZerg"/>
+        <DeathCustoms ModelLink="Invisible" Name="Vortex"/>
+        <DeathCustomData Name="RagdollBasic" SyncPassChance="50"/>
+        <DeathCustomData Name="RagdollBasicAndGibNoBlood" Members="RagdollBasicNoBlood;RagdollGibNoBlood" SyncPassChance="50"/>
+        <DeathCustomData Name="RagdollBaneling" Supersedes="RagdollBasic" SyncPassChance="50"/>
+        <DeathCustomData Name="RagdollSiegeTank" Supersedes="RagdollBasic" SyncPassChance="55"/>
+        <DeathCustomData Name="RagdollNuke" Supersedes="RagdollBasic" SyncPassChance="50"/>
+        <DeathCustomData Name="RagdollUltraUnburrow"/>
+        <DeathCustomData Name="RagdollSpineCrawlerHurl" SyncPassChance="25"/>
+        <DeathCustomData Name="RagdollOverkillDPRH" SyncPassChance="50"/>
+        <DeathCustomData Name="RagdollOverkillDOI" SyncPassChance="33"/>
+        <DeathCustomData Name="RagdollFire" Supersedes="RagdollBasic,RagdollOverkillDOI,RagdollOverkillDPRH" SyncPassChance="50"/>
+        <DeathCustomData Name="RagdollAcid" Supersedes="RagdollBasic,RagdollOverkillDOI,RagdollOverkillDPRH" SyncPassChance="50"/>
+        <DeathCustomData Name="RagdollMidair" Supersedes="RagdollBasic,RagdollOverkillDOI,RagdollOverkillDPRH"/>
+        <DeathCustomData Name="RagdollUpgraded" Supersedes="RagdollBasic,RagdollOverkillDOI,RagdollOverkillDPRH" SyncPassChance="50"/>
+        <DeathCustomData Name="RagdollUpgradedMidair" Supersedes="RagdollBasic,RagdollOverkillDOI,RagdollOverkillDPRH,RagdollMidair"/>
+        <DeathCustomData Name="RagdollAoE"/>
+        <DeathActorModel value="UnitDeathModel"/>
+        <DeathActorModelLow value="UnitDeathModelUnscaled"/>
+        <DeathActorSound value="UnitDeathSound"/>
+        <DeathActorVoice value="UnitDeathVoice"/>
+        <OverkillByDamagePastRemainingHealth Value="30" TestType="PercentageOfMaxLifePlusShields"/>
+        <OverkillByDamageOverInterval Value="70" Interval="1" TestType="PercentageOfMaxLifePlusShields"/>
+        <PhysicsMatchKeysOrdered value="Basic"/>
+        <PlacementModel value="Nagaroyalguard"/>
+        <PlacementActorModel value="PlacementModel"/>
+        <PlaceholderActorModel value="PlaceholderModel"/>
+        <PortraitActor value="War3_PortraitActor"/>
+        <PortraitModel value="NagaroyalguardPortrait"/>
+        <RandomScaleRange value="1.000000,1.000000"/>
+        <VarianceWindowStandIntro value="0.330000"/>
+        <VarianceWindowStand value="1.000000"/>
+        <VarianceWindowWalkIntro value="0.330000"/>
+        <VarianceWindowWalk value="1.000000"/>
+        <VarianceWindowWalkOutro value="0.330000"/>
+        <WalkAnimMoveSpeed value="2.6367"/>
+        <BarDistance value="34"/>
+        <BarHeight value="7"/>
+        <BarOffset value="60"/>
+        <BarWidth value="102"/>
+        <GlossaryAnim value="Stand"/>
+        <GroupSoundArray index="What" value="Nagaroyalguard_GroupWhat"/>
+        <GroupSoundArray index="Yes" value="Nagaroyalguard_GroupYes"/>
+        <GroupSoundArray index="Attack" value="Nagaroyalguard_GroupAttack"/>
+        <GroupSoundArray index="Board" value="Nagaroyalguard_GroupBoard"/>
+        <GroupSoundThreshold value="2"/>
+        <HeroIcon value="Assets\Textures\war3_btnnagamyrmidonroyalguard.dds"/>
+        <HighlightTooltip value="Unit/Name/Nagaroyalguard"/>
+        <LifeArmorIcon value="Assets\Textures\war3_btnhumanarmorupthree.dds"/>
+        <MinimapIconScale value="1.000000"/>
+        <MinimapIconBackgroundScale value="1.000000"/>
+        <MinimapRenderPriority value="Normal"/>
+        <MinimapFlashWhenAttacked value="1"/>
+        <MinimapUseSelfColor value="1"/>
+        <MinimapUseSelectionColor value="1"/>
+        <NameOffset value="30"/>
+        <ShieldArmorIcon value="Assets\Textures\btn-upgrade-protoss-shieldslevel0.dds"/>
+        <SnapshotActor value="Snapshot"/>
+        <SoundArray index="Birth" value="Nagaroyalguard_Birth"/>
+        <SoundArray index="Ready" value="NagaRoyalGuardReady"/>
+        <SoundArray index="Help" value="Nagaroyalguard_Help"/>
+        <SoundArray index="What" value="NagaRoyalGuardWhat"/>
+        <SoundArray index="Yes" value="NagaRoyalGuardYes"/>
+        <SoundArray index="Attack" value="NagaRoyalGuardYesAttack"/>
+        <SoundArray index="Pissed" value="NagaRoyalGuardPissed"/>
+        <SoundArray index="Movement" value="Nagaroyalguard_Movement"/>
+        <SoundArray index="Turning" value="Nagaroyalguard_Turning"/>
+        <SoundArray index="Board" value="Nagaroyalguard_Board"/>
+        <SoundArray index="Click" value="Nagaroyalguard_Click"/>
+        <SoundArray index="ClickError" value="Nagaroyalguard_ClickError"/>
+        <SoundArray index="Highlight" value="Nagaroyalguard_Highlight"/>
+        <StatusBarFlags index="Shields" value="1"/>
+        <StatusBarFlags index="Life" value="1"/>
+        <StatusBarFlags index="Energy" value="1"/>
+        <StatusBarFlags index="Cargo" value="1"/>
+        <StatusBarFlags index="Progress" value="1"/>
+        <StatusBarFlags index="Duration" value="1"/>
+        <StatusBarFlags index="Magazine" value="1"/>
+        <StatusBarFlags index="Workers" value="1"/>
+        <StatusBarFlags index="Custom" value="1"/>
+        <StatusBarGroups index="Owner" value="1"/>
+        <StatusBarGroups index="Allied" value="1"/>
+        <StatusBarGroups index="Enemy" value="1"/>
+        <StatusBarGroups index="All" value="1"/>
+        <StatusColors index="Shields" BackgroundColor="255,0,0,0" EmptyColor="255,80,80,80">
+            <ColorArray value="255,0,0,255"/>
+        </StatusColors>
+        <StatusColors index="Life" BackgroundColor="255,0,0,0" EmptyColor="255,80,80,80">
+            <ColorArray value="255,208,34,0"/>
+            <ColorArray value="255,208,34,0"/>
+            <ColorArray value="255,229,129,0"/>
+            <ColorArray value="255,229,129,0"/>
+            <ColorArray value="255,229,221,0"/>
+            <ColorArray value="255,229,221,0"/>
+            <ColorArray value="255,22,229,0"/>
+            <ColorArray value="255,22,229,0"/>
+        </StatusColors>
+        <StatusColors index="Energy" BackgroundColor="255,0,0,0" EmptyColor="255,80,80,80">
+            <ColorArray value="255,150,40,220"/>
+        </StatusColors>
+        <StatusColors index="Cargo" BackgroundColor="255,0,0,0" EmptyColor="255,77,60,15">
+            <ColorArray value="255,255,255,255"/>
+        </StatusColors>
+        <StatusColors index="Progress" BackgroundColor="255,0,0,0" EmptyColor="255,80,80,80">
+            <ColorArray value="255,0,200,200"/>
+        </StatusColors>
+        <StatusColors index="Duration" BackgroundColor="255,0,0,0" EmptyColor="255,40,40,40">
+            <ColorArray value="255,120,120,120"/>
+        </StatusColors>
+        <StatusColors index="Magazine" BackgroundColor="255,0,0,0" EmptyColor="255,77,60,15">
+            <ColorArray value="255,128,128,64"/>
+        </StatusColors>
+        <StatusTextInfo>
+            <Offset value="0,16"/>
+            <Attachment value="Ref_StatusBar"/>
+            <FontSize value="16"/>
+            <BackgroundColor value="255,255,255,255"/>
+            <BackgroundImage value="Assets\Textures\ui_ingame_workercount_bg.dds"/>
+        </StatusTextInfo>
+        <UnitFlags index="ShowBlobShadow" value="1"/>
+        <UnitFlags index="StandAnimBirthVariation" value="1"/>
+        <UnitIcon value="Assets\Textures\war3_btnnagamyrmidonroyalguard.dds"/>
+        <VisibleOpacity value="1.000000"/>
+    </CActorUnit>
+    <CActorAction id="NagaroyalguardAttack1" effectAttack="NagaroyalguardWeapon1Damage" effectImpact="Bogus" effectLaunch="Bogus" attackType="MetalMediumSlice">
+        <Aliases value="_ActorAction"/>
+        <InheritType value="Continuous"/>
+        <Inherits index="BaseModelScale" value="0"/>
+        <Inherits index="CastShadows" value="0"/>
+        <Inherits index="CloakEffect" value="0"/>
+        <Inherits index="CreepEngulfment" value="0"/>
+        <Inherits index="Decal" value="0"/>
+        <Inherits index="LocalTintColor" value="0"/>
+        <Inherits index="ModelMaterials" value="0"/>
+        <Inherits index="Opacity" value="0"/>
+        <Inherits index="Scale" value="0"/>
+        <Inherits index="TeamColor" value="0"/>
+        <Inherits index="TimeScale" value="0"/>
+        <Inherits index="TintColor" value="0"/>
+        <Inherits index="Visibility" value="0"/>
+        <Inherits index="WarpGroup" value="0"/>
+        <FogVisibility value="Snapshot"/>
+        <EditorCategories value="DoodadType:NotDoodad"/>
+        <On Terms="Effect.NagaroyalguardWeapon1Damage.Stop; FromEffectTreeDescendant" Send="ActionImpactPhysics"/>
+        <On Terms="Effect.Bogus.Start; FromEffectTreeDescendant" Send="ActionImpact"/>
+        <On Terms="Effect.Bogus.Stop; FromEffectTreeDescendant" Send="ActionImpactPhysics"/>
+        <On Terms="Effect.SplashDamage.Start; FromEffectTreeDescendant" Send="ActionDamage"/>
+        <On Terms="Effect.SplashDamage.Stop; FromEffectTreeDescendant" Send="ActionDamagePhysics"/>
+        <On Terms="Effect.NagaroyalguardWeapon1Damage.Start; At Caster" Send="Create"/>
+        <On Terms="Effect.Bogus.Start; At Caster" Send="Create"/>
+        <LaunchGuideAlias value="_LaunchGuide"/>
+        <LaunchSiteOps Ops="SOpAttachHarness"/>
+        <LaunchSite value="GenericAttackLaunchSite"/>
+        <LaunchSiteFallback value="GenericAttackLaunchFallbackSite"/>
+        <LaunchAttachQuery Methods="Weapon 0" Fallback="Center"/>
+        <LaunchAssets Model="NagaroyalguardAttack1Launch" Sound="NagaroyalguardAttack1Launch"/>
+        <LaunchModel value="GenericAttackLaunchModel"/>
+        <LaunchSound value="GenericAttackLaunchSound"/>
+        <LaunchTerrainSquibModel value="GenericAttackLaunchTerrainSquibModel"/>
+        <LaunchTerrainSquibSound value="GenericAttackLaunchTerrainSquibSound"/>
+        <ContainerSiteOps Ops="SOpAttachHarness SOpForwardTargetPoint"/>
+        <ContainerSite value="GenericAttackLaunchSite"/>
+        <ContainerAttachQuery Methods="$SpaceStationValerianAttackLaunchMethods AMPortAllocatorBunker" Fallback="Center"/>
+        <ContainerAssets Model="NagaroyalguardWeapon1DamageBunkerAttackLaunch" Sound="NagaroyalguardWeapon1DamageBunkerAttackLaunch"/>
+        <ContainerModel value="GenericAttackLaunchModel"/>
+        <ContainerSound value="GenericAttackLaunchSound"/>
+        <ContainerTerrainSquibModel value="GenericAttackLaunchTerrainSquibModel"/>
+        <ContainerTerrainSquibSound value="GenericAttackLaunchTerrainSquibSound"/>
+        <Beam value="NagaroyalguardAttack1Beam"/>
+        <BeamScope value="Effect"/>
+        <Missile value="NagaroyalguardAttack1Missile"/>
+        <ImpactGuideAlias value="_ImpactGuide"/>
+        <ImpactSiteOps Ops="SOpAttachHarness SOpAttachVolumeStandard"/>
+        <ImpactSite value="GenericAttackImpactSite"/>
+        <ImpactSiteFallback value="GenericAttackImpactFallbackSite"/>
+        <ImpactAttachQuery Methods="$GenericAttackTargetMethods" Fallback="Center"/>
+        <ImpactReattachQuery Methods="AMVolumesRequery" Fallback="Center"/>
+        <ImpactPointSiteOps Ops="SOpTargetPointStationary"/>
+        <ImpactPointSite value="GenericAttackImpactPointSite"/>
+        <ImpactMap index="None" Model="NagaroyalguardAttack1Impact" Sound="MetalMediumSliceMetal" ModelReaction="NagaroyalguardAttack1ImpactReaction"/>
+        <ImpactMap index="Dirt" Sound="MetalMediumSliceWood"/>
+        <ImpactMap index="Rock" Sound="MetalMediumSliceStone"/>
+        <ImpactMap index="Flesh" Sound="MetalMediumSliceFlesh"/>
+        <ImpactMap index="LightArmor" Sound="MetalMediumSliceEthereal"/>
+        <ImpactMap index="Metal" Sound="MetalMediumSliceMetal"/>
+        <ImpactMap index="Shield" Sound="NagaroyalguardAttack1ImpactShield" ModelReaction="NagaroyalguardAttack1ImpactReactionShield"/>
+        <ImpactModel value="War3AttackImpactModel"/>
+        <ImpactModelReaction value="GenericAttackImpactModelReaction"/>
+        <ImpactSound value="GenericAttackImpactSound"/>
+        <ImpactTerrainSquibModel value="GenericAttackImpactTerrainSquibModel"/>
+        <ImpactTerrainSquibSound value="GenericAttackImpactTerrainSquibSound"/>
+        <DamageSiteOps Ops="SOpAttachHarness SOpAttachVolumeStandard"/>
+        <DamageSite value="GenericAttackDamageSite"/>
+        <DamageAttachQuery Methods="$GenericAttackTargetMethods" Fallback="Center"/>
+        <DamageReattachQuery Methods="AMVolumesRequery" Fallback="Center"/>
+        <DamageMap index="None" Model="NagaroyalguardAttack1Damage" Sound="NagaroyalguardAttack1Damage" ModelReaction="NagaroyalguardAttack1DamageReaction"/>
+        <DamageMap index="Shield" Sound="NagaroyalguardAttack1DamageShield" ModelReaction="NagaroyalguardAttack1DamageReactionShield"/>
+        <DamageModel value="GenericAttackDamageModel"/>
+        <DamageModelReaction value="GenericAttackDamageModelReaction"/>
+        <DamageSound value="GenericAttackDamageSound"/>
+        <DamageTerrainSquibModel value="GenericAttackDamageTerrainSquibModel"/>
+        <DamageTerrainSquibSound value="GenericAttackDamageTerrainSquibSound"/>
+        <AttackAnimSource value="::Main"/>
+        <AttackAnimName value="Attack"/>
+        <Lifetime value="0.100000"/>
+    </CActorAction>
+    <CActorUnit id="Nagaroyalguardmorph" unitSound="Bogus" unitName="Nagaroyalguardmorph">
+        <CopySource value="_Unit"/>
+        <Aliases value="_Unit"/>
+        <Aliases value="_Selectable"/>
+        <Macros value="DeadAnimationMacro"/>
+        <Flags index="RespondsToUnitPlayerChange" value="1"/>
+        <InheritType value="Continuous"/>
+        <Inherits index="BaseModelScale" value="0"/>
+        <Inherits index="CastShadows" value="0"/>
+        <Inherits index="CloakEffect" value="0"/>
+        <Inherits index="CreepEngulfment" value="0"/>
+        <Inherits index="Decal" value="0"/>
+        <Inherits index="LocalTintColor" value="0"/>
+        <Inherits index="ModelMaterials" value="0"/>
+        <Inherits index="Opacity" value="0"/>
+        <Inherits index="Scale" value="0"/>
+        <Inherits index="TeamColor" value="0"/>
+        <Inherits index="TimeScale" value="0"/>
+        <Inherits index="TintColor" value="0"/>
+        <Inherits index="Visibility" value="0"/>
+        <Inherits index="WarpGroup" value="0"/>
+        <AcceptedTransfers index="AnimProps" value="1"/>
+        <AcceptedTransfers index="Position" value="1"/>
+        <AcceptedTransfers index="Rotation" value="1"/>
+        <AcceptedTransfers index="Textures" value="1"/>
+        <AcceptedTransfers index="Status" value="1"/>
+        <AcceptedHostedPropTransfers index="BaseModelScale" value="0"/>
+        <FogVisibility value="Snapshot"/>
+        <EditorCategories value="DoodadType:NotDoodad"/>
+        <Remove Terms="AnimDone; AnimName Death" Send="AnimPlay Dead Dead PlayForever"/>
+        <Remove Terms="DeathModelInitializeDone" Send="SetTransferOverrideAnim Dead"/>
+        <Remove Terms="AnimDone.*.Missing; AnimName Dead" Send="Destroy"/>
+        <On Terms="UnitBirth.Nagaroyalguardmorph" Send="Create SoundEmitter Nagaroyalguardmorph_Ambience"/>
+        <On Terms="UnitBirth.Nagaroyalguardmorph" Send="Create"/>
+        <On Terms="UnitRevive.Nagaroyalguardmorph" Send="Create"/>
+        <On Terms="UnitRevive.Nagaroyalguardmorph" Send="RefSet ::HostTurretBody _Selectable"/>
+        <On Terms="UnitConstruction.Nagaroyalguardmorph.Start" Send="Create"/>
+        <On Terms="UnitConstruction.Nagaroyalguardmorph.Finish" Send="AnimPlay ConstructionDeath Stand,Birth,Death FullMatch"/>
+        <On Terms="AnimDone.*.Missing; AnimName ConstructionDeath" Send="Destroy"/>
+        <On Terms="ActorCreation; ValidateUnit IsFlying; Option Shadow Low; $AllowBlobShadow" Send="Create FlyerShadow"/>
+        <On Terms="ActorCreation; ValidateUnit IsNotFlying; Option Shadow Low; $AllowBlobShadow" Send="Create GroundShadow"/>
+        <On Terms="StatusOn.*.PreTargetingModel" Send="Create ModelPretargetGround"/>
+        <On Terms="StatusOff.*.PreTargetingModel" Target="ModelPretargetGround" Send="Destroy"/>
+        <On Terms="StatusOn.*.PreTargetingModel; ValidateUnit IsFlying" Send="Create GroundPreSelection"/>
+        <On Terms="StatusOff.*.PreTargetingModel" Target="GroundPreSelection" Send="Destroy"/>
+        <On Terms="StatusIncrement.*.PreTargetingModel; IsStatus PreTargetingModel 2" Send="StatusSet PreTargetingModel 1"/>
+        <On Terms="PreTargetingUpdate.*.Start" Send="SetTintColorBlendPair 255,192,192 255,128,128 0.150000 Bounce Pretarget"/>
+        <On Terms="PreTargetingUpdate.*.Stop" Send="ClearTintColor 0.100000 Pretarget"/>
+        <On Terms="StatusOn.*.PreTargetingTint" Send="PreTargetingUpdate Start"/>
+        <On Terms="StatusOff.*.PreTargetingTint" Send="PreTargetingUpdate Stop"/>
+        <On Terms="StatusIncrement.*.PreTargetingTint; IsStatus PreTargetingTint 2" Send="StatusSet PreTargetingTint 1"/>
+        <On Terms="CursorUpdate.*.Start; ValidateUnit IsFlying" Send="StatusIncrement FlyerHelper"/>
+        <On Terms="CursorUpdate.*.Stop; ValidateUnit IsFlying; HasStatus FlyerHelper" Send="StatusDecrement FlyerHelper"/>
+        <On Terms="ActorCreation; ScopeContains GroundLocalSelection" Send="StatusSet Selected 1"/>
+        <On Terms="SelectionLocalUpdate.*.Start" Send="StatusSet Selected 1"/>
+        <On Terms="SelectionLocalUpdate.*.Stop" Send="StatusSet Selected 0"/>
+        <On Terms="StatusOn.*.Selected; ValidateUnit IsFlying" Send="StatusIncrement FlyerHelper"/>
+        <On Terms="StatusOff.*.Selected; ValidateUnit IsFlying; HasStatus FlyerHelper" Send="StatusDecrement FlyerHelper"/>
+        <On Terms="StatusOn.*.FlyerHelper; FlyerHelper All" Send="Create FlyerHelperSplat"/>
+        <On Terms="StatusOn.*.FlyerHelper; FlyerHelper Selected" Send="Create FlyerHelperSplat"/>
+        <On Terms="StatusOff.*.FlyerHelper; FlyerHelper Selected" Target="FlyerHelperSplat" Send="Destroy"/>
+        <On Terms="ActorCreation; FlyerHelper All; ValidateUnit IsFlying" Send="Create FlyerHelperSplat"/>
+        <On Terms="ActorDestruction; FlyerHelper All; !HasStatus FlyerHelper" Target="FlyerHelperSplat" Send="Destroy"/>
+        <On Terms="FlyerHelperChange; FlyerHelper None" Target="FlyerHelperSplat" Send="Destroy"/>
+        <On Terms="FlyerHelperChange; FlyerHelper Selected; HasStatus FlyerHelper; !ScopeContains FlyerHelperSplat" Send="Create FlyerHelperSplat"/>
+        <On Terms="FlyerHelperChange; FlyerHelper Selected; !HasStatus FlyerHelper" Target="FlyerHelperSplat" Send="Destroy"/>
+        <On Terms="FlyerHelperChange; FlyerHelper All; ValidateUnit IsFlying; !ScopeContains FlyerHelperSplat" Send="Create FlyerHelperSplat"/>
+        <On Terms="UnitBirth.*.Normal" Send="$Birth 0 0.000000"/>
+        <On Terms="UnitFidget" Send="AnimPlay Fidget Fidget"/>
+        <On Terms="UnitMovementUpdate.*.Walk" Send="AnimClear Fidget"/>
+        <On Terms="UnitDetectedByViewer.*.On; ValidateUnit IsHallucination" Target="_HallucinationTinter" Send="Signal HallucinationTintOn"/>
+        <On Terms="UnitDetectedByViewer.*.Off; ValidateUnit IsHallucination" Target="_HallucinationTinter" Send="Signal HallucinationTintOff"/>
+        <On Terms="UnitDeathCustomize; ValidateUnit NotStructure; IsStatus InAir 1" Send="DeathCustomize AntiGravGeneric"/>
+        <On Terms="UnitDeathCustomize; ValidateUnit IsProtossUnit; IsStatus InAir 1" Send="DeathCustomize AntiGravProtoss"/>
+        <On Terms="UnitDeathCustomize; ValidateUnit IsTerranUnit; IsStatus InAir 1" Send="DeathCustomize AntiGravTerran"/>
+        <On Terms="UnitDeathCustomize; ValidateUnit IsZergUnit; IsStatus InAir 1" Send="DeathCustomize AntiGravZerg"/>
+        <On Terms="UnitDeathCustomize; ValidateUnit IsVortexed" Send="DeathCustomize Vortex"/>
+        <On Terms="UnitDeathCustomize; ValidateUnit HasForceLowDeathProtoss" Send="DeathCustomize AntiGravProtoss"/>
+        <On Terms="UnitDeathCustomize; ValidateUnit HasForceLowDeathZerg" Send="DeathCustomize AntiGravZerg"/>
+        <On Terms="UnitDeathCustomize; ValidateUnit HasForceLowDeathTerran" Send="DeathCustomize AntiGravTerran"/>
+        <On Terms="Behavior.PhoenixAntiGrav.On" Send="ModelSuddenMotionStart"/>
+        <On Terms="Behavior.PhoenixAntiGrav.Off" Send="ModelSuddenMotionStop"/>
+        <On Terms="Behavior.ForceLowDeath.On" Send="DeathCustomsEnablePhysics 0"/>
+        <On Terms="UnitTaunt.*.Start; Taunt" Send="AnimPlay Cheer Stand,Victory"/>
+        <On Terms="UnitTaunt.*.Stop; Taunt" Send="AnimClear Cheer"/>
+        <On Terms="UnitTaunt.*.Start; Taunt Dance" Send="AnimPlay Dance Stand,Dance"/>
+        <On Terms="UnitTaunt.*.Stop; Taunt Dance" Send="AnimClear Dance"/>
+        <On Terms="UnitTaunt.*.Start; Taunt Tease" Send="AnimPlay Taunt Taunt"/>
+        <On Terms="UnitTaunt.*.Stop; Taunt Tease" Send="AnimClear Taunt"/>
+        <On Terms="ActorCreation" Send="StatusSet InAir 0"/>
+        <On Terms="UnitHeightUpdate.*.Lift" Send="StatusSet InAir 1"/>
+        <On Terms="UnitHeightUpdate.*.Land" Send="StatusSet InAir 0"/>
+        <On Terms="BuildCoachHover.*.On" Send="TimerKill DelayUnhighlight"/>
+        <On Terms="BuildCoachHover.*.On" Send="SetTintColor 0,255,0 0.100000"/>
+        <On Terms="BuildCoachHover.*.Off" Send="TimerSet 0.300000 DelayUnhighlight"/>
+        <On Terms="TimerExpired; TimerName DelayUnhighlight" Send="SetTintColor 255,255,255 0.500000"/>
+        <On Terms="Abil.attack.ReadyStart" Send="AnimGroupApply Ready"/>
+        <On Terms="WeaponStart.*.AttackStart" Send="AnimBracketStart Attack Attack"/>
+        <On Terms="WeaponStart.*.AttackStart; AnimPlaying Birth" Send="AnimClear Birth"/>
+        <On Terms="WeaponStop.*.AttackStop" Send="AnimBracketStop Attack"/>
+        <On Terms="Abil.attack.ReadyStop" Send="AnimGroupRemove Ready"/>
+        <On Terms="Abil.War3Attack.ReadyStart" Send="AnimGroupApply Ready"/>
+        <On Terms="Abil.War3Attack.ReadyStop" Send="AnimGroupRemove Ready"/>
+        <On Terms="Abil.War3AttackPlusTree.ReadyStart" Send="AnimGroupApply Ready"/>
+        <On Terms="Abil.War3AttackPlusTree.ReadyStop" Send="AnimGroupRemove Ready"/>
+        <On Terms="ModelEvent; ModelEventName Bone_Guts" Send="Create War3_Death_Bones_Explosion"/>
+        <On Terms="ActorCreation; ValidateUnit War3BurnableUnits" Send="Create BuildingFlame1"/>
+        <On Terms="ActorCreation; ValidateUnit War3BurnableUnits" Send="Create BuildingFlame2"/>
+        <On Terms="ActorCreation; ValidateUnit War3BurnableUnits" Send="Create BuildingFlame3"/>
+        <On Terms="UnitDeath" Send="$Death"/>
+        <On Terms="AnimDone; AnimName Death" Send="AnimPlay DeathB Decay,Flesh"/>
+        <On Terms="AnimDone; AnimName DeathB" Send="AnimPlay DeathC Decay,Bone"/>
+        <On Terms="AnimDone; AnimName DeathC" Send="Destroy"/>
+        <On Terms="UnitRevive.Nagaroyalguardmorph; AnimPlaying Death" Send="Destroy"/>
+        <On Terms="UnitRevive.Nagaroyalguardmorph; AnimPlaying DeathB" Send="Destroy"/>
+        <On Terms="UnitRevive.Nagaroyalguardmorph; AnimPlaying DeathC" Send="Destroy"/>
+        <On Terms="UnitMovementUpdate.*.Walk" Target="_MorphModel" Send="AnimPlay Walk Walk PlayForever"/>
+        <On Terms="UnitMovementUpdate.*.Stand" Target="_MorphModel" Send="AnimClear Walk"/>
+        <On Terms="Behavior.BrilliantGemTargetRegen.On" Send="StatusIncrement GeneralAura"/>
+        <On Terms="Behavior.ChieftainEnduranceAuraATarget.On" Send="StatusIncrement GeneralAura"/>
+        <On Terms="Behavior.ChieftainEnduranceAuraBTarget.On" Send="StatusIncrement GeneralAura"/>
+        <On Terms="Behavior.ChieftainEnduranceAuraCTarget.On" Send="StatusIncrement GeneralAura"/>
+        <On Terms="Behavior.BrilliantGemTargetRegen.Off" Send="StatusDecrement GeneralAura"/>
+        <On Terms="Behavior.ChieftainEnduranceAuraATarget.Off" Send="StatusDecrement GeneralAura"/>
+        <On Terms="Behavior.ChieftainEnduranceAuraBTarget.Off" Send="StatusDecrement GeneralAura"/>
+        <On Terms="Behavior.ChieftainEnduranceAuraCTarget.Off" Send="StatusDecrement GeneralAura"/>
+        <On Terms="StatusOn.*.GeneralAura" Send="Create GeneralAuraTarget"/>
+        <On Terms="StatusOff.*.GeneralAura" Target="GeneralAuraTarget" Send="Destroy"/>
+        <On Terms="ActorCreation" Send="AnimGroupApply Alternate {} {} Instant"/>
+        <AddToProximitySystem value="1"/>
+        <Model value="Nagaroyalguardmorph"/>
+        <AnimBlendTime value="0.150000"/>
+        <ModelFlags index="AllowHitTest" value="1"/>
+        <ModelFlags index="AutomateGlobalLoops" value="1"/>
+        <ModelFlags index="NeedsVolumeMonitoring" value="1"/>
+        <ModelFlags index="UpdateVisibility" value="1"/>
+        <ModelFlags index="UseSyncSeed" value="1"/>
+        <EventDataFootprint Actor="UnitFootprint" Model="NagaroyalguardmorphFootprint"/>
+        <EventDataSound Actor="UnitSound"/>
+        <ProximityPosition value="CenterModelBounds"/>
+        <Baselines index="Stand" AnimProps="Stand" BlendIn="-1.000000" BlendOut="-1.000000"/>
+        <Baselines index="Walk" AnimProps="Walk" BlendIn="-1.000000" BlendOut="-1.000000"/>
+        <BuildModel value="Nagaroyalguardmorph"/>
+        <DeathArray index="Normal" AnimProps="Stand" ModelLink="Nagaroyalguardmorph" VoiceLink="NagaroyalguardmorphDeathVoice"/>
+        <DeathArray index="Eat" AnimProps="Stand"/>
+        <DeathArray index="Eviscerate" AnimProps="Stand"/>
+        <DeathArray index="Fire" AnimProps="Stand"/>
+        <DeathArray index="Silentkill" AnimProps="Stand"/>
+        <DeathArray index="Squish" AnimProps="Stand"/>
+        <DeathArray index="UnderConstruction" AnimProps="Stand"/>
+        <DeathCustoms ModelLink="ZergSmallUnitDeathLow" Name="AntiGravGeneric"/>
+        <DeathCustoms ModelLink="ProtossSmallUnitDeathLow" Name="AntiGravProtoss"/>
+        <DeathCustoms ModelLink="TerranSmallUnitDeathLow" Name="AntiGravTerran"/>
+        <DeathCustoms ModelLink="ZergSmallUnitDeathLow" Name="AntiGravZerg"/>
+        <DeathCustoms ModelLink="Invisible" Name="Vortex"/>
+        <DeathCustomData Name="RagdollBasic" SyncPassChance="50"/>
+        <DeathCustomData Name="RagdollBasicAndGibNoBlood" Members="RagdollBasicNoBlood;RagdollGibNoBlood" SyncPassChance="50"/>
+        <DeathCustomData Name="RagdollBaneling" Supersedes="RagdollBasic" SyncPassChance="50"/>
+        <DeathCustomData Name="RagdollSiegeTank" Supersedes="RagdollBasic" SyncPassChance="55"/>
+        <DeathCustomData Name="RagdollNuke" Supersedes="RagdollBasic" SyncPassChance="50"/>
+        <DeathCustomData Name="RagdollUltraUnburrow"/>
+        <DeathCustomData Name="RagdollSpineCrawlerHurl" SyncPassChance="25"/>
+        <DeathCustomData Name="RagdollOverkillDPRH" SyncPassChance="50"/>
+        <DeathCustomData Name="RagdollOverkillDOI" SyncPassChance="33"/>
+        <DeathCustomData Name="RagdollFire" Supersedes="RagdollBasic,RagdollOverkillDOI,RagdollOverkillDPRH" SyncPassChance="50"/>
+        <DeathCustomData Name="RagdollAcid" Supersedes="RagdollBasic,RagdollOverkillDOI,RagdollOverkillDPRH" SyncPassChance="50"/>
+        <DeathCustomData Name="RagdollMidair" Supersedes="RagdollBasic,RagdollOverkillDOI,RagdollOverkillDPRH"/>
+        <DeathCustomData Name="RagdollUpgraded" Supersedes="RagdollBasic,RagdollOverkillDOI,RagdollOverkillDPRH" SyncPassChance="50"/>
+        <DeathCustomData Name="RagdollUpgradedMidair" Supersedes="RagdollBasic,RagdollOverkillDOI,RagdollOverkillDPRH,RagdollMidair"/>
+        <DeathCustomData Name="RagdollAoE"/>
+        <DeathActorModel value="UnitDeathModel"/>
+        <DeathActorModelLow value="UnitDeathModelUnscaled"/>
+        <DeathActorSound value="UnitDeathSound"/>
+        <DeathActorVoice value="UnitDeathVoice"/>
+        <OverkillByDamagePastRemainingHealth Value="30" TestType="PercentageOfMaxLifePlusShields"/>
+        <OverkillByDamageOverInterval Value="70" Interval="1" TestType="PercentageOfMaxLifePlusShields"/>
+        <PhysicsMatchKeysOrdered value="Basic"/>
+        <PlacementModel value="Nagaroyalguardmorph"/>
+        <PlacementActorModel value="PlacementModel"/>
+        <PlaceholderActorModel value="PlaceholderModel"/>
+        <PortraitActor value="War3_PortraitActor"/>
+        <PortraitModel value="NagaroyalguardmorphPortrait"/>
+        <RandomScaleRange value="1.000000,1.000000"/>
+        <VarianceWindowStandIntro value="0.330000"/>
+        <VarianceWindowStand value="1.000000"/>
+        <VarianceWindowWalkIntro value="0.330000"/>
+        <VarianceWindowWalk value="1.000000"/>
+        <VarianceWindowWalkOutro value="0.330000"/>
+        <WalkAnimMoveSpeed value="2.6367"/>
+        <BarDistance value="34"/>
+        <BarHeight value="7"/>
+        <BarOffset value="100"/>
+        <BarWidth value="102"/>
+        <GlossaryAnim value="Stand"/>
+        <GroupSoundArray index="What" value="Nagaroyalguardmorph_GroupWhat"/>
+        <GroupSoundArray index="Yes" value="Nagaroyalguardmorph_GroupYes"/>
+        <GroupSoundArray index="Attack" value="Nagaroyalguardmorph_GroupAttack"/>
+        <GroupSoundArray index="Board" value="Nagaroyalguardmorph_GroupBoard"/>
+        <GroupSoundThreshold value="2"/>
+        <HeroIcon value="Assets\Textures\war3_btnnagamyrmidonroyalguard.dds"/>
+        <HighlightTooltip value="Unit/Name/Nagaroyalguardmorph"/>
+        <LifeArmorIcon value="Assets\Textures\war3_btnhumanarmorupthree.dds"/>
+        <MinimapIconScale value="1.000000"/>
+        <MinimapIconBackgroundScale value="1.000000"/>
+        <MinimapRenderPriority value="Normal"/>
+        <MinimapFlashWhenAttacked value="1"/>
+        <MinimapUseSelfColor value="1"/>
+        <MinimapUseSelectionColor value="1"/>
+        <NameOffset value="30"/>
+        <ShieldArmorIcon value="Assets\Textures\btn-upgrade-protoss-shieldslevel0.dds"/>
+        <SnapshotActor value="Snapshot"/>
+        <SoundArray index="Birth" value="Nagaroyalguardmorph_Birth"/>
+        <SoundArray index="Ready" value="NagaRoyalGuardReady"/>
+        <SoundArray index="Help" value="Nagaroyalguardmorph_Help"/>
+        <SoundArray index="What" value="NagaRoyalGuardWhat"/>
+        <SoundArray index="Yes" value="NagaRoyalGuardYes"/>
+        <SoundArray index="Attack" value="NagaRoyalGuardYesAttack"/>
+        <SoundArray index="Pissed" value="NagaRoyalGuardPissed"/>
+        <SoundArray index="Movement" value="Nagaroyalguardmorph_Movement"/>
+        <SoundArray index="Turning" value="Nagaroyalguardmorph_Turning"/>
+        <SoundArray index="Board" value="Nagaroyalguardmorph_Board"/>
+        <SoundArray index="Click" value="Nagaroyalguardmorph_Click"/>
+        <SoundArray index="ClickError" value="Nagaroyalguardmorph_ClickError"/>
+        <SoundArray index="Highlight" value="Nagaroyalguardmorph_Highlight"/>
+        <StatusBarFlags index="Shields" value="1"/>
+        <StatusBarFlags index="Life" value="1"/>
+        <StatusBarFlags index="Energy" value="1"/>
+        <StatusBarFlags index="Cargo" value="1"/>
+        <StatusBarFlags index="Progress" value="1"/>
+        <StatusBarFlags index="Duration" value="1"/>
+        <StatusBarFlags index="Magazine" value="1"/>
+        <StatusBarFlags index="Workers" value="1"/>
+        <StatusBarFlags index="Custom" value="1"/>
+        <StatusBarGroups index="Owner" value="1"/>
+        <StatusBarGroups index="Allied" value="1"/>
+        <StatusBarGroups index="Enemy" value="1"/>
+        <StatusBarGroups index="All" value="1"/>
+        <StatusColors index="Shields" BackgroundColor="255,0,0,0" EmptyColor="255,80,80,80">
+            <ColorArray value="255,0,0,255"/>
+        </StatusColors>
+        <StatusColors index="Life" BackgroundColor="255,0,0,0" EmptyColor="255,80,80,80">
+            <ColorArray value="255,208,34,0"/>
+            <ColorArray value="255,208,34,0"/>
+            <ColorArray value="255,229,129,0"/>
+            <ColorArray value="255,229,129,0"/>
+            <ColorArray value="255,229,221,0"/>
+            <ColorArray value="255,229,221,0"/>
+            <ColorArray value="255,22,229,0"/>
+            <ColorArray value="255,22,229,0"/>
+        </StatusColors>
+        <StatusColors index="Energy" BackgroundColor="255,0,0,0" EmptyColor="255,80,80,80">
+            <ColorArray value="255,150,40,220"/>
+        </StatusColors>
+        <StatusColors index="Cargo" BackgroundColor="255,0,0,0" EmptyColor="255,77,60,15">
+            <ColorArray value="255,255,255,255"/>
+        </StatusColors>
+        <StatusColors index="Progress" BackgroundColor="255,0,0,0" EmptyColor="255,80,80,80">
+            <ColorArray value="255,0,200,200"/>
+        </StatusColors>
+        <StatusColors index="Duration" BackgroundColor="255,0,0,0" EmptyColor="255,40,40,40">
+            <ColorArray value="255,120,120,120"/>
+        </StatusColors>
+        <StatusColors index="Magazine" BackgroundColor="255,0,0,0" EmptyColor="255,77,60,15">
+            <ColorArray value="255,128,128,64"/>
+        </StatusColors>
+        <StatusTextInfo>
+            <Offset value="0,16"/>
+            <Attachment value="Ref_StatusBar"/>
+            <FontSize value="16"/>
+            <BackgroundColor value="255,255,255,255"/>
+            <BackgroundImage value="Assets\Textures\ui_ingame_workercount_bg.dds"/>
+        </StatusTextInfo>
+        <UnitFlags index="ShowBlobShadow" value="1"/>
+        <UnitFlags index="StandAnimBirthVariation" value="1"/>
+        <UnitIcon value="Assets\Textures\war3_btnnagamyrmidonroyalguard.dds"/>
+        <VisibleOpacity value="1.000000"/>
+    </CActorUnit>
+    <CActorModel id="War3AttackImpactModel" parent="GenericAttackImpactModel">
+        <Remove Terms="ActorCreation" Send="AnimBracketStart BSD Birth Stand Death ContentPlayOnce"/>
+        <On Terms="ActorCreation" Send="AnimBracketStart BSD IGNORE IGNORE Death ContentPlayOnce"/>
+    </CActorModel>
+</Catalog>

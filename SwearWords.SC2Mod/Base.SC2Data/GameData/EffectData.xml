@@ -1,0 +1,58 @@
+<?xml version="1.0" encoding="utf-8"?>
+<Catalog>
+    <CEffectModifyUnit id="FullHeal2">
+        <ImpactUnit Value="Source"/>
+        <VitalArray index="Life">
+            <ChangeFraction value="1"/>
+        </VitalArray>
+        <VitalArray index="Shields">
+            <ChangeFraction value="1"/>
+        </VitalArray>
+        <VitalArray index="Energy">
+            <ChangeFraction value="1"/>
+        </VitalArray>
+    </CEffectModifyUnit>
+    <CEffectDamage id="NagaroyalguardWeapon1Damage">
+        <Name value="Effect/Name/NagaroyalguardWeapon1Damage"/>
+        <ValidatorArray value="NotPhysicalImmune"/>
+        <EditorCategories value="Race:Neutral"/>
+        <Marker Link="Effect/NagaroyalguardWeapon1Damage"/>
+        <Chance value="1"/>
+        <DamageModifierSource Value="Unknown"/>
+        <OwningPlayer Value="Unknown"/>
+        <ResponseFlags index="Acquire" value="1"/>
+        <ResponseFlags index="Flee" value="1"/>
+        <LaunchLocation Value="SourceUnit"/>
+        <ImpactLocation Value="TargetUnitOrPoint"/>
+        <ArmorReduction value="1"/>
+        <Visibility value="Snapshot"/>
+        <Flags index="Notification" value="1"/>
+        <Kind value="Melee"/>
+        <Type value="Unknown"/>
+        <Random value="12"/>
+        <ExcludeArray Value="Target"/>
+        <MinCountError value="CantFindEnoughTargets"/>
+        <SearchFlags index="CallForHelp" value="1"/>
+        <SearchFlags index="OffsetByUnitRadius" value="1"/>
+        <SearchFlags index="OffsetAreaByAngle" value="1"/>
+        <SearchFlags index="SameCliff" value="1"/>
+        <DisplayFlags index="CollapseBuffed" value="1"/>
+        <DisplayFlags index="DisplayRounded" value="1"/>
+    </CEffectDamage>
+    <CEffectApplyBehavior id="PearInvuln">
+        <EditorCategories value=""/>
+        <WhichUnit Value="Source"/>
+        <Behavior value="Invulnerable"/>
+    </CEffectApplyBehavior>
+    <CEffectSet id="PearRevive">
+        <EditorCategories value=""/>
+        <EffectArray value="PearInvuln"/>
+        <EffectArray value="FullHeal2"/>
+        <EffectArray value="RemovePearInvuln"/>
+    </CEffectSet>
+    <CEffectRemoveBehavior id="RemovePearInvuln">
+        <EditorCategories value=""/>
+        <WhichUnit Value="Source"/>
+        <BehaviorLink value="PearInvuln"/>
+    </CEffectRemoveBehavior>
+</Catalog>
